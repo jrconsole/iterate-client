@@ -14,7 +14,8 @@ const ReserveForm = (props) => {
             firstName,
             lastName,
             email,
-            phone
+            phone,
+            card: props.card
         };
         props.submitRes(resInputs);
         setFormSubmitted(true);

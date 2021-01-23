@@ -13,7 +13,15 @@ const cardOfferings = [
 const OfferList = (props) => {
 
     const renderCards = (cards) => {
-        return cards.map(card => <OfferCard card={card} startRes={props.startRes}/>)
+        return cards.map(card => {
+            let reserved = false;
+            props.reservedCards.forEach(reservedCard => {
+                if(card.name === reservedCard.name) {
+                    reserved = true;
+                }
+            })
+            return <OfferCard card={card} startRes={props.startRes} reserved={reserved} />
+        })
     }
 
     return (

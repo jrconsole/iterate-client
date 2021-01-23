@@ -6,25 +6,39 @@ const Splash = () => {
 
     const [reserveFormActive, setReserveFormActive] = useState(false);
     const [selectedCard, setSelectedCard] = useState({});
+    const [reservedCardArray, setReservedCardArray] = useState([]);
 
     const startReservation = (card) => {
-        setReserveFormActive(true);
+        if (reservedCardArray.length > 0) {
+            reserveCard(card);
+        } else {
+            setReserveFormActive(true);
+        }
+
         setSelectedCard(card);
     }
 
+    const reserveCard = (card) => {
+        setReservedCardArray([ ...reservedCardArray, card ])
+    }
+
     const submitReservation = (resInputs) => {
-        //setReserveFormActive(false);
-        console.log(resInputs);
+        console.log('submitted');
+        setReservedCardArray([ resInputs.card ]);
     }
 
     const closeForm = () => {
-        console.log('this ran');
         setReserveFormActive(false);
     }
 
     const renderReserveForm = () => {
         if (reserveFormActive) {
-            return <ReserveForm closeForm={closeForm} card={selectedCard} submitRes={submitReservation}/>
+            return (
+                <ReserveForm  
+                    closeForm={closeForm} 
+                    card={selectedCard} 
+                    submitRes={submitReservation}/>
+            )
         } else {
             return
         }    
@@ -35,7 +49,7 @@ const Splash = () => {
             <header>
                 <h1>This is the header</h1>
             </header>
-            <OfferList startRes={startReservation}/>
+            <OfferList reservedCards={reservedCardArray} startRes={startReservation}/>
             {renderReserveForm()}
         </>
     );
