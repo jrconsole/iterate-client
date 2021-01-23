@@ -23,7 +23,6 @@ const Splash = () => {
     }
 
     const submitReservation = (resInputs) => {
-        console.log('submitted');
         setReservedCardArray([ resInputs.card ]);
     }
 
