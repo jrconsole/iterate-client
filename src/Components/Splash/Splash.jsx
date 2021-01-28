@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import OfferList from '../OfferList/OfferList';
 import ReserveForm from '../ReserveForm/ReserveForm';
+import './Splash.css';
 
 const Splash = () => {
 
