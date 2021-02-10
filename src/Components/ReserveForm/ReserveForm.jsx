@@ -26,6 +26,28 @@ const addPerson = gql`
 }
 `
 
+const addReservation = gql`
+    mutation addReservation (
+        $boardId: String!,
+        $personId: String!
+    ) {
+        createReservation(
+        reservation: { 
+        boardId: $boardId, 
+        personId: $personId, 
+        }
+    ) {
+        id
+        board {
+            id
+        }
+        person {
+            id
+        }
+    }
+}
+`
+
 const ReserveForm = (props) => {
 
     const [firstName, setFirstName] = useState('');
@@ -34,24 +56,14 @@ const ReserveForm = (props) => {
     const [phone, setPhone] = useState('');
     const [formSubmitted, setFormSubmitted] = useState(false);
 
-    const [ createPerson, { error } ] = useMutation(addPerson);
+    const [createPerson, { personError }] = useMutation(addPerson);
+    const [createReservation, { reservationError }] = useMutation(addReservation);
 
-    const submitForm = async () => {
-        await createPerson({
-            variables: { firstName, lastName, email, phone }
-        })
+    const submitForm = (e) => {
+        e.preventDefault();
+        const userInput = { firstName, lastName, email, phone };
 
-        if (error) {
-            console.log(error);
-        }
-        const resInputs = {
-            firstName,
-            lastName,
-            email,
-            phone,
-            card: props.card
-        };
-        props.submitRes(resInputs);
+        props.submitRes(userInput, props.card);
         setFormSubmitted(true);
     }
 

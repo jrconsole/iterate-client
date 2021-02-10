@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import './App.css';
 import Splash from '../Splash/Splash';
+import Dashboard from '../Dashboard/Dashboard';
 //import NavBar from '../NavBar/NavBar';
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Splash />
+            </Route>
+            <Route path="/manage">
+              <Dashboard />
             </Route>
           </Switch>
         </div>
