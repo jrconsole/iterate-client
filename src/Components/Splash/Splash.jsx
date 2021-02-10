@@ -31,12 +31,14 @@ const addPerson = gql`
 const addReservation = gql`
     mutation addReservation (
         $boardId: String!,
-        $personId: String!
+        $personId: String!,
+        $foundersOnly: Boolean!
     ) {
         createReservation(
         reservation: { 
         boardId: $boardId, 
-        personId: $personId, 
+        personId: $personId,
+        foundersOnly: $foundersOnly 
         }
     ) {
         id
@@ -55,7 +57,7 @@ const Splash = () => {
     const [reserveFormActive, setReserveFormActive] = useState(false);
     const [selectedCard, setSelectedCard] = useState({});
     const [reservedCardArray, setReservedCardArray] = useState([]);
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState({ info: {}, foundersOnly: false });
 
     const [createPerson, { personError }] = useMutation(addPerson);
     const [createReservation, { reservationError }] = useMutation(addReservation);
@@ -63,7 +65,7 @@ const Splash = () => {
     const startReservation = (card) => {
         setSelectedCard(card);
 
-        if (Object.keys(user).length) {
+        if (Object.keys(user.info).length) {
             submitReservation(user, card);
         } else {
             setReserveFormActive(true);
@@ -73,13 +75,16 @@ const Splash = () => {
     const submitReservation = async (personInput, card) => {
         let person;
         //---check if there is an existing user to avoid creating duplicate
-        if (Object.keys(user).length) {
+        if (Object.keys(user.info).length) {
             person = user;
         } else {
             const {data: {createPerson: newPerson}} = await createPerson({
-                variables: personInput
+                variables: personInput.info
             })
-            setUser(newPerson);
+            setUser({
+                info: newPerson, 
+                foundersOnly: personInput.foundersOnly
+            });
             person = newPerson;
         }
         //---check if there is an existing user to avoid creating duplicate
@@ -87,7 +92,8 @@ const Splash = () => {
         await createReservation({
             variables: { 
                 boardId: card.id, 
-                personId: person.id 
+                personId: person.id, 
+                foundersOnly: personInput.foundersOnly
             }
         })
 

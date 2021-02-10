@@ -54,6 +54,7 @@ const ReserveForm = (props) => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const [founders, setFounders] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     const [createPerson, { personError }] = useMutation(addPerson);
@@ -61,7 +62,10 @@ const ReserveForm = (props) => {
 
     const submitForm = (e) => {
         e.preventDefault();
-        const userInput = { firstName, lastName, email, phone };
+        const userInput = { 
+            info: { firstName, lastName, email, phone }, 
+            foundersOnly: founders 
+        };
 
         props.submitRes(userInput, props.card);
         setFormSubmitted(true);
@@ -74,7 +78,23 @@ const ReserveForm = (props) => {
             return (
                 <form onSubmit={submitForm} >
                     <h4>reserve a {props.card.name}</h4>
-
+                    
+                    <input
+                        type="radio"
+                        id="foundersChoiceTrue"
+                        name="founders"
+                        value={true}
+                        onClick={() => setFounders(true)}
+                        required/>
+                    <label htmlFor="foundersChoiceTrue">Founders Edition Only</label>
+                    <input
+                        type="radio"
+                        id="foundersChoiceFalse"
+                        name="founders"
+                        value={false}
+                        onClick={() => setFounders(false)}
+                        required/>
+                    <label htmlFor="foundersChoiceFalse">All Variants</label>
                     <input 
                         type="text"
                         id="firstNameRes"
