@@ -28,17 +28,17 @@ const addPerson = gql`
 
 const addReservation = gql`
     mutation addReservation (
-        $boardId: String!,
+        $gpuId: String!,
         $personId: String!
     ) {
         createReservation(
         reservation: { 
-        boardId: $boardId, 
+        gpuId: $gpuId, 
         personId: $personId, 
         }
     ) {
         id
-        board {
+        gpu {
             id
         }
         person {

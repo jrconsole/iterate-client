@@ -30,19 +30,19 @@ const addPerson = gql`
 
 const addReservation = gql`
     mutation addReservation (
-        $boardId: String!,
+        $gpuId: String!,
         $personId: String!,
         $foundersOnly: Boolean!
     ) {
         createReservation(
         reservation: { 
-        boardId: $boardId, 
+        gpuId: $gpuId, 
         personId: $personId,
         foundersOnly: $foundersOnly 
         }
     ) {
         id
-        board {
+        gpu {
             id
         }
         person {
@@ -67,6 +67,7 @@ const Splash = () => {
 
         if (Object.keys(user.info).length) {
             submitReservation(user, card);
+            console.log('user', user, 'card', card);
         } else {
             setReserveFormActive(true);
         }
@@ -76,7 +77,7 @@ const Splash = () => {
         let person;
         //---check if there is an existing user to avoid creating duplicate
         if (Object.keys(user.info).length) {
-            person = user;
+            person = user.info;
         } else {
             const {data: {createPerson: newPerson}} = await createPerson({
                 variables: personInput.info
@@ -91,7 +92,7 @@ const Splash = () => {
 
         await createReservation({
             variables: { 
-                boardId: card.id, 
+                gpuId: card.id, 
                 personId: person.id, 
                 foundersOnly: personInput.foundersOnly
             }

@@ -5,7 +5,7 @@ const getReservations = gql`
     query {
         reservations {
             id
-            board {
+            gpu {
                 id
                 name
             }
@@ -32,8 +32,10 @@ const Dashboard = (props) => {
     const renderReservations = () => {
         if(reservations.length) {
             return reservations.map(reservation => {
-                return <p>{reservation.id}, {reservation.board.name}, {reservation.person.firstName}</p>
+                return <p>{reservation.id}, {reservation.gpu.name}, {reservation.person.firstName}</p>
             })
+        } else {
+            return 'Go get some Reservations!'
         }
     }
 

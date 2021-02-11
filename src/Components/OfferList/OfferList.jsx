@@ -2,49 +2,38 @@ import React, { useEffect, useState } from 'react';
 import OfferCard from '../OfferCard/OfferCard';
 import { useQuery, gql } from '@apollo/client';
 
-const getBoards = gql`
+const getGPUs = gql`
     query {
-        boards {
-            id
-            name
-            supplier {
-            id
-            name
-            }
-            gpu {
+        gpus {
             id
             name
             supplier {
                 id
                 name
             }
-            }
-            price
-            inventory
-            quantity
         }
     }
 `
 
 const OfferList = (props) => {
-    const { loading, error, data } = useQuery(getBoards);
-    const [ boards, setBoards ] = useState([]);
+    const { loading, error, data } = useQuery(getGPUs);
+    const [ gpus, setGPUs ] = useState([]);
     useEffect(() => {
         if(data) {
-            setBoards(data.boards);
+            setGPUs(data.gpus);
         }
     }, [data])
 
     const renderCards = () => {
-        if(boards.length) {
-            return boards.map(board => {
+        if(gpus.length) {
+            return gpus.map(gpu => {
                 let reserved = false;
-                props.reservedCards.forEach(reservedBoard => {
-                    if(board.name === reservedBoard.name) {
+                props.reservedCards.forEach(reservedGPU => {
+                    if(gpu.name === reservedGPU.name) {
                         reserved = true;
                     }
                 })
-                return <OfferCard key={board.id} card={board} startRes={props.startRes} reserved={reserved} />
+                return <OfferCard key={gpu.id} card={gpu} startRes={props.startRes} reserved={reserved} />
             })
         }
     }
