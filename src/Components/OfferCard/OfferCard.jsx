@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const OfferCard = (props) => {
 
     const renderReserveButton = () => {
-        if(props.reserved) {
+        if(props.card.reserved) {
             return <p>reserved</p>
         } else {
             return (
@@ -16,10 +17,12 @@ const OfferCard = (props) => {
     }
 
     return (
-        <>
-            <p>{props.card.name}</p>
+        <div>
+            <Link to={`/product/${props.card.id}`}>
+                <p>{props.card.name}</p>
+            </Link>
             {renderReserveButton()}
-        </>
+        </div>
     );
 };
 

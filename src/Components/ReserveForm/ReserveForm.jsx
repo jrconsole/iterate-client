@@ -1,52 +1,5 @@
 import React, { useState } from 'react';
 import './ReserveForm.css';
-import { gql, useMutation } from '@apollo/client';
-
-const addPerson = gql`
-    mutation addPerson (
-        $firstName: String!,
-        $lastName: String!,
-        $email: String!
-        $phone: String!
-    ) {
-        createPerson(
-        person: { 
-        firstName: $firstName, 
-        lastName: $lastName, 
-        email: $email, 
-        phone: $phone
-        }
-    ) {
-        id
-        firstName
-        lastName
-        email
-        phone
-    }
-}
-`
-
-const addReservation = gql`
-    mutation addReservation (
-        $gpuId: String!,
-        $personId: String!
-    ) {
-        createReservation(
-        reservation: { 
-        gpuId: $gpuId, 
-        personId: $personId, 
-        }
-    ) {
-        id
-        gpu {
-            id
-        }
-        person {
-            id
-        }
-    }
-}
-`
 
 const ReserveForm = (props) => {
 
@@ -56,9 +9,6 @@ const ReserveForm = (props) => {
     const [phone, setPhone] = useState('');
     const [founders, setFounders] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
-
-    const [createPerson, { personError }] = useMutation(addPerson);
-    const [createReservation, { reservationError }] = useMutation(addReservation);
 
     const submitForm = (e) => {
         e.preventDefault();

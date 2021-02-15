@@ -1,24 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
-
-const getReservations = gql`
-    query {
-        reservations {
-            id
-            gpu {
-                id
-                name
-            }
-            person {
-                id
-                firstName
-                lastName
-                email
-                phone
-            }
-        }
-    }
-`
+import { useQuery } from '@apollo/client';
+import { getReservations } from '../../util/graphql';
 
 const Dashboard = (props) => {
     const { loading, error, data } = useQuery(getReservations);
