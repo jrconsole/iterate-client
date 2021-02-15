@@ -28,6 +28,7 @@ const Dashboard = (props) => {
     }
     return (
         <>
+            <h4>You have {reservations.length} reservations!</h4>
             {renderReservations()}
         </>
     );
