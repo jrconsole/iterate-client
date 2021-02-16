@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 import './App.css';
 import Splash from '../Splash/Splash';
 import Dashboard from '../Dashboard/Dashboard';
+import ManageListings from '../ManageListings/ManageListings';
 import Product from '../Product/Product';
 import ReserveForm from '../ReserveForm/ReserveForm';
 //import NavBar from '../NavBar/NavBar';
@@ -123,8 +124,11 @@ function App() {
                 startRes={startReservation} 
                 renderReserveForm={renderReserveForm} />
             </Route>
-            <Route path="/manage">
+            <Route exact path="/manage">
               <Dashboard />
+            </Route>
+            <Route path="/manage/listings">
+              <ManageListings gpus={gpus} />
             </Route>
             <Route path="/product/:id" >
               <Product 

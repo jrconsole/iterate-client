@@ -27,7 +27,9 @@ export const getReservations = gql`
                 lastName
                 email
                 phone
-            }
+            },
+            foundersOnly,
+            date
         }
     }
 `
