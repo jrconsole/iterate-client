@@ -1,5 +1,29 @@
 import { gql } from '@apollo/client';
 
+export const getSuppliers = gql`
+    query {
+        suppliers {
+            id
+            name
+        }
+    }
+`
+
+export const addSupplier = gql`
+    mutation addSupplier (
+        $name: String!
+    ) {
+        createSupplier(
+            supplier: {
+                name: $name
+            }
+        ) {
+            id
+            name
+        }
+    } 
+`
+
 export const getGPUs = gql`
     query {
         gpus {
@@ -10,6 +34,27 @@ export const getGPUs = gql`
                 name
             }
         }
+    }
+`
+
+export const addGPU = gql`
+    mutation addGPU (
+        $name: String!,
+        $supplierId: String!
+    ) {
+        createGPU(
+        gpu: { 
+        name: $name, 
+        supplierId: $supplierId, 
+        }
+    ) {
+        id
+        name
+        supplier {
+            id
+            name
+        }
+    } 
     }
 `
 
@@ -38,7 +83,7 @@ export const addPerson = gql`
     mutation addPerson (
         $firstName: String!,
         $lastName: String!,
-        $email: String!
+        $email: String!,
         $phone: String!
     ) {
         createPerson(
