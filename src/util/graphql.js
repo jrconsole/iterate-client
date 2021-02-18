@@ -83,7 +83,55 @@ export const getReservations = gql`
                 phone
             },
             foundersOnly,
-            date
+            date,
+            status
+        }
+    }
+`
+
+export const addReservation = gql`
+    mutation addReservation (
+        $gpuId: String!,
+        $personId: String!,
+        $foundersOnly: Boolean!
+    ) {
+        createReservation(
+        reservation: { 
+        gpuId: $gpuId, 
+        personId: $personId,
+        foundersOnly: $foundersOnly 
+        }
+    ) {
+        id
+        gpu {
+            id
+        }
+        person {
+            id
+        }
+    }
+}
+`
+
+export const updateReservation = gql`
+    mutation updateReservation( 
+        $id: String!, 
+        $status: ReservationStatus! 
+    ) {
+        updateReservation( 
+            reservationUpdate: { 
+                id: $id, 
+                status: $status 
+            } 
+        ) {
+            id
+            gpu {
+                id
+            }
+            person {
+                id
+            }
+            status
         }
     }
 `
@@ -108,30 +156,6 @@ export const addPerson = gql`
         lastName
         email
         phone
-    }
-}
-`
-
-export const addReservation = gql`
-    mutation addReservation (
-        $gpuId: String!,
-        $personId: String!,
-        $foundersOnly: Boolean!
-    ) {
-        createReservation(
-        reservation: { 
-        gpuId: $gpuId, 
-        personId: $personId,
-        foundersOnly: $foundersOnly 
-        }
-    ) {
-        id
-        gpu {
-            id
-        }
-        person {
-            id
-        }
     }
 }
 `

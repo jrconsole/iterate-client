@@ -1,16 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { getReservations } from '../../util/graphql';
+import { useMutation, useQuery } from '@apollo/client';
+import { getReservations, updateReservation } from '../../util/graphql';
 
 const Dashboard = (props) => {
-    const { loading, error, data } = useQuery(getReservations);
+    const { loading, error, data, refetch: refreshReservations } = useQuery(getReservations);
+    const [changeResStatus, { error: statusError }] = useMutation(updateReservation);
     const [ reservations, setReservations ] = useState([]);
     useEffect(() => {
         if(data) {
             setReservations(data.reservations);
         }
     }, [data])
+
+    const handleClick = (id, status) => {
+        changeResStatus({variables: { id, status}});
+        refreshReservations(); //DOESNT SEEM TO WORK AFTER A PERIOD OF TIME
+    }
+
+    const renderStatusButtons = (reservation) => {
+        if(reservation.status === 'ACTIVE') {
+            return (
+                <>
+                    <button onClick={() => handleClick(reservation.id, 'REMOVED')}>remove</button>
+                    <button onClick={() => handleClick(reservation.id, 'LEASED')}>leased</button>
+                </>
+            )
+        } else if (reservation.status === 'LEASED') {
+            return (
+                <>
+                    <button onClick={() => handleClick(reservation.id, 'REMOVED')}>remove</button>
+                    <button onClick={() => handleClick(reservation.id, 'ACTIVE')}>activate</button>
+                </>
+            )            
+        } else if (reservation.status === 'REMOVED') {
+            return (
+                <>
+                    <button onClick={() => handleClick(reservation.id, 'ACTIVE')}>activate</button>
+                </>
+            )            
+        }
+    }
 
     const renderReservations = () => {
         if (loading) return <p>loading reservations...</p>;
@@ -23,9 +53,14 @@ const Dashboard = (props) => {
                 <>
                     <h4>You have {reservations.length} reservations!</h4>
                     {reservations.map(reservation => {
-                        const d = new Date(0)
-                        d.setUTCMilliseconds(reservation.date)
-                        return <p>{reservation.id}, {reservation.gpu.name}, {reservation.person.firstName}, {d.toString()}</p>
+                        const date = new Date(0)
+                        date.setUTCMilliseconds(reservation.date)
+                        return (
+                            <>
+                                <p>{reservation.id}, {reservation.gpu.name}, {reservation.person.firstName}, {date.toString()}, {reservation.status}</p>
+                                {renderStatusButtons(reservation)}
+                            </>
+                        )
                     })}
                 </>
             )
@@ -33,7 +68,6 @@ const Dashboard = (props) => {
             return 'Go get some Reservations!'
         }
     }
-
 
     return (
         <>
