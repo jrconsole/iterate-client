@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import EditForm from '../EditForm/EditForm';
-import { useQuery } from '@apollo/client';
-import { getReservations } from '../../util/graphql';
+import { useMutation } from '@apollo/client';
+import { deleteGPU } from '../../util/graphql';
 
 const ManageListings = (props) => {
     const [ editFormActive, setEditFormActive ] = useState(false);
     const [selectedGPU, setSelectedGPU] = useState({});
 
+    const [dbDeleteGPU, { deleteError: error }] = useMutation(deleteGPU);
+
     const startEdit = (gpu) => {
         setSelectedGPU(gpu);
         setEditFormActive(true);
+    }
+
+    const onDelete = (id) => {
+        dbDeleteGPU({variables: { id }});
+        props.refresh();
     }
 
     const closeEditForm = () => {
@@ -26,6 +33,7 @@ const ManageListings = (props) => {
                             <>
                                 <p>{gpu.id}, {gpu.name}</p>
                                 <button onClick={() => startEdit(gpu)}>Edit</button>
+                                <button onClick={() => onDelete(gpu.id)}>Delete</button>
                             </>
                         )
                     })}

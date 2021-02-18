@@ -22,7 +22,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [user, setUser] = useState({ info: {}, foundersOnly: false });
 
-  const { loading, error, data } = useQuery(getGPUs);
+  const { loading, error, data, refetch: refreshGPUs } = useQuery(getGPUs);
   const [createPerson, { personError }] = useMutation(addPerson);
   const [createReservation, { reservationError }] = useMutation(addReservation);
 
@@ -128,7 +128,7 @@ function App() {
               <Dashboard />
             </Route>
             <Route path="/manage/listings">
-              <ManageListings gpus={gpus} />
+              <ManageListings gpus={gpus} refresh={refreshGPUs} />
             </Route>
             <Route path="/product/:id" >
               <Product 
