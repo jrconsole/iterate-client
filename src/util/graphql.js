@@ -58,6 +58,29 @@ export const addGPU = gql`
     }
 `
 
+export const updateGPU = gql`
+        mutation updateGPU (
+        $id: String!
+        $name: String,
+        $supplierId: String
+    ) {
+        updateGPU(
+            gpuUpdate: { 
+                id: $id
+                name: $name, 
+                supplierId: $supplierId, 
+            }
+        ) {
+            id
+            name
+            supplier {
+                id
+                name
+            }
+        } 
+    }
+`
+
 export const deleteGPU = gql`
     mutation deleteGPU ($id: String!) {
         deleteOneGPU(id: $id) {

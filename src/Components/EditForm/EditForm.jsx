@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './EditForm.css';
-import { addGPU, addSupplier, getSuppliers } from '../../util/graphql';
+import { addGPU, updateGPU, addSupplier, getSuppliers } from '../../util/graphql';
 import { useMutation, useQuery } from '@apollo/client';
 
 const EditForm = (props) => {
+    const newGPU = props.gpu.id ? false : true;
 
-    const [gpuName, setGPUName] = useState(null);
-    const [selectedSupplier, setSelectedSupplier] = useState({});
+    const [gpuName, setGPUName] = useState(newGPU ? null : props.gpu.name);
+    const [selectedSupplier, setSelectedSupplier] = useState(newGPU ? null : props.gpu.supplier.id);
     const [supplierName, setSupplierName] = useState(null);
     const [newSupplier, setNewSupplier] = useState(false);
     const [allSuppliers, setAllSuppliers] = useState([]);
@@ -15,7 +16,8 @@ const EditForm = (props) => {
 
     const { loading, error, data } = useQuery(getSuppliers);
     const [createSupplier, { error: supplierError }] = useMutation(addSupplier);
-    const [createGPU, { error: gpuError }] = useMutation(addGPU);
+    const [createGPU, { error: addGPUError }] = useMutation(addGPU);
+    const [editGPU, { error: updateGPUError}] = useMutation(updateGPU);
 
     useEffect(() => {
         if (data) {
@@ -37,17 +39,28 @@ const EditForm = (props) => {
             supplierId = selectedSupplier;
         }
 
-        await createGPU({
-            variables: {
-                name: gpuName,
-                supplierId
-            }
-        })
+        const gpuInput = { variables: {} }
 
-        if (supplierError || gpuError) {
-            const error = supplierError ? supplierError : gpuError;
-            console.log(error);
+        if (newGPU) {
+            gpuInput.variables.name = gpuName;
+            gpuInput.variables.supplierId = supplierId;
+
+            await createGPU(gpuInput)
+        } else {
+            gpuInput.variables.id = props.gpu.id;
+            if (props.gpu.name !== gpuName) {
+                gpuInput.variables.name = gpuName;
+            }
+            if (props.gpu.supplier.id !== supplierId) {
+                gpuInput.variables.supplierId = supplierId
+            }
+            console.log(gpuInput)
+            await editGPU(gpuInput);
         }
+
+        if(supplierError) { console.log(supplierError) };
+        if(addGPUError) { console.log(addGPUError) };
+        if(updateGPUError) { console.log(updateGPUError) };
         setFormSubmitted(true);
     }
 
@@ -56,31 +69,34 @@ const EditForm = (props) => {
             <>
                 <button onClick={() => setNewSupplier(false)}>close</button>
                 <input 
-                        type="text"
-                        id="supplierNameAdd"
-                        name="supplierName"
-                        placeholder="Supplier Name"
-                        value={supplierName}
-                        onChange={(e) => setSupplierName(e.target.value)}
-                        required />
+                    type="text"
+                    id="supplierNameAdd"
+                    name="supplierName"
+                    placeholder="Supplier Name"
+                    value={supplierName}
+                    onChange={(e) => setSupplierName(e.target.value)}
+                    required />
             </>
         )
     }
 
     const renderSelectSupplier = () => {
-        if (loading) return <p>loading suppliers...</p>;
+        if (loading) {return <p>loading suppliers...</p>};
         if (error) {
             console.log(error);
             return <p>Couldn't fetch suppliers!</p>
         }
         return (
             <>
+                <button onClick={() => setNewSupplier(true)}>New Supplier</button>
                 <select 
                     name="suppliers" 
                     id="suppliers" 
+                    defaultValue=''
+                    value={selectedSupplier}
                     onChange={(e) => setSelectedSupplier(e.target.value)}
                     required>
-                <option value='' disabled selected hidden>supplier</option>
+                <option value='' disabled hidden>supplier</option>
                     {allSuppliers.map(dbSupplier => {
                         return (
                             <option 
@@ -89,7 +105,6 @@ const EditForm = (props) => {
                         )
                     })}
                 </select>
-                <button onClick={() => setNewSupplier(true)}>New Supplier</button>
             </>
         )
     }
@@ -100,7 +115,7 @@ const EditForm = (props) => {
         } else {
             return (
                 <form onSubmit={submitForm} >
-                    <h4>Edit {props.gpu.name}</h4>
+                    <h4>{newGPU ? `Add a GPU Listing` : `Edit ${props.gpu.name}`}</h4> 
                     
                     <input 
                         type="text"

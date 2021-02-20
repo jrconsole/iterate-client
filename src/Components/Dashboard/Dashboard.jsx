@@ -15,7 +15,7 @@ const Dashboard = (props) => {
 
     const handleClick = (id, status) => {
         changeResStatus({variables: { id, status}});
-        refreshReservations(); //DOESNT SEEM TO WORK AFTER A PERIOD OF TIME
+        refreshReservations(); 
     }
 
     const renderStatusButtons = (reservation) => {

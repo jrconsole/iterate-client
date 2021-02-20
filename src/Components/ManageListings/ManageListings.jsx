@@ -10,7 +10,7 @@ const ManageListings = (props) => {
 
     const [dbDeleteGPU, { deleteError: error }] = useMutation(deleteGPU);
 
-    const startEdit = (gpu) => {
+    const openForm = (gpu) => {
         setSelectedGPU(gpu);
         setEditFormActive(true);
     }
@@ -32,7 +32,7 @@ const ManageListings = (props) => {
                         return (
                             <>
                                 <p>{gpu.id}, {gpu.name}</p>
-                                <button onClick={() => startEdit(gpu)}>Edit</button>
+                                <button onClick={() => openForm(gpu)}>Edit</button>
                                 <button onClick={() => onDelete(gpu.id)}>Delete</button>
                             </>
                         )
@@ -47,8 +47,9 @@ const ManageListings = (props) => {
     return (
         <>
             <Link to='/manage'><button>Dashboard</button></Link>
+            <button onClick={() => openForm({})}>Add Listing</button>
             {renderListings()}
-            {editFormActive ? <EditForm gpu={selectedGPU} /> : null}
+            {editFormActive ? <EditForm gpu={selectedGPU} closeForm={closeEditForm} /> : null}
         </>
     );
 };
