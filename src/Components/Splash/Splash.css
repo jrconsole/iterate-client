@@ -1,0 +1,33 @@
+header {
+    margin: 250px 50px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+header h1 {
+    margin: 25px auto;
+    font-size: 60px;
+    font-weight: lighter;
+}
+
+.subtitle {
+    margin: auto;
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+
+body {
+    background-image: url('../../images/iterate-background.JPG');
+    background-color: #000000;
+    background-position-y: top;
+    background-size: cover;
+    color: whitesmoke;
+}
+
+a {
+    color: whitesmoke;
+    text-decoration: none;
+    font-weight: bold;
+}

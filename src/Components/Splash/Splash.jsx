@@ -10,7 +10,8 @@ const Splash = (props) => {
     return (
         <>
             <header>
-                <h1>This is the header</h1>
+                <h1>ITERATE</h1>
+                <h4 className='subtitle'>Lease your card. Stay ahead of the game.</h4>
             </header>
             <OfferList 
                 cards={props.cards} 
