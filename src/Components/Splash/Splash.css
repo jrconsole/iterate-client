@@ -1,27 +1,27 @@
 header {
     margin: 250px 50px;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
+    text-align: center;
 }
 
 header h1 {
-    margin: 25px auto;
+    margin: 25px;
     font-size: 60px;
     font-weight: lighter;
 }
 
 .subtitle {
-    margin: auto;
     font-size: 30px;
     font-weight: lighter;
 }
 
+main {
+    margin: 40px;
+    padding: 20px;
+}
 
 body {
     background-image: url('../../images/iterate-background.JPG');
     background-color: #000000;
-    background-position-y: top;
     background-size: cover;
     color: whitesmoke;
 }

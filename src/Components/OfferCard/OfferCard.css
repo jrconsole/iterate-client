@@ -1,0 +1,44 @@
+div.offerCard {
+    margin: 20px;
+    padding: 15px;
+    background-color: rgba(66, 65, 65, 0.904);
+
+    border-radius: 10px;
+    display: grid;
+    grid-template: 1fr 2fr / 3fr 3fr 2fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.offerCard img {
+    max-width: 300px;
+    grid-area: 1 / 1 / span 2 / span 1;
+}
+
+.offerCard .buttons {
+    grid-area: 1 / 3 / span 2 / span 1;
+}
+
+.offerCard button {
+    display: block;
+    width: 100%;
+}
+
+.offerPrice, .offerTitle {
+    font-size: 40px;
+}
+
+.offerTitle {
+    font-size: 25px;
+}
+
+.offerTerm {
+    display: block;
+    color:rgba(129, 129, 129, 0.904)
+}
+
+.offerDetails {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
