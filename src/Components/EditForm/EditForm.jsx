@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './EditForm.css';
+import { FileUpload } from '../FileUpload/FileUpload';
 import { addGPU, updateGPU, addSupplier, getSuppliers } from '../../util/graphql';
 import { useMutation, useQuery } from '@apollo/client';
 
@@ -74,7 +75,6 @@ const EditForm = (props) => {
     const renderNewSupplierFields = () => {
         return (
             <>
-                <button onClick={() => setNewSupplier(false)}>close</button>
                 <input 
                     type="text"
                     id="supplierNameAdd"
@@ -83,6 +83,7 @@ const EditForm = (props) => {
                     value={supplierName}
                     onChange={(e) => setSupplierName(e.target.value)}
                     required />
+                <button onClick={() => setNewSupplier(false)}>close</button>
             </>
         )
     }
@@ -95,7 +96,6 @@ const EditForm = (props) => {
         }
         return (
             <>
-                <button onClick={() => setNewSupplier(true)}>New Supplier</button>
                 <select 
                     name="suppliers" 
                     id="suppliers" 
@@ -112,6 +112,7 @@ const EditForm = (props) => {
                         )
                     })}
                 </select>
+                <button onClick={() => setNewSupplier(true)}>New Supplier</button>
             </>
         )
     }
@@ -135,11 +136,12 @@ const EditForm = (props) => {
 
                     {newSupplier ? renderNewSupplierFields() : renderSelectSupplier()}
 
+                    <span>$</span>
                     <input 
                         type="number"
                         id="gpuPriceDollarsEdit"
                         name="gpuPriceDollars"
-                        placeholder="$50"
+                        placeholder="50"
                         value={gpuPriceDollars}
                         onChange={(e) => setGPUPriceDollars(e.target.value)}
                         required />
@@ -152,6 +154,8 @@ const EditForm = (props) => {
                         value={gpuPriceCents}
                         onChange={(e) => setGPUPriceCents(e.target.value)}/>
                     <span> /mo</span>
+
+                    <FileUpload />
 
                     <input type='submit'/>
                 </form>

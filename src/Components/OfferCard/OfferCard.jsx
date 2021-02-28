@@ -20,9 +20,12 @@ const OfferCard = (props) => {
         }
     }
 
+    //https://d2skuhm0vrry40.cloudfront.net/2018/articles/2018-09-19-12-39/RTX_2080_Ti.JPG/EG11/resize/690x-1/quality/75/format/jpg
+
+
     return (
         <div className="offerCard">
-            <img src="https://d2skuhm0vrry40.cloudfront.net/2018/articles/2018-09-19-12-39/RTX_2080_Ti.JPG/EG11/resize/690x-1/quality/75/format/jpg"/>
+            <img src="https://lh3.googleusercontent.com/pw/ACtC-3dfdXXgT_QM7IX-AOpUow5tV0-aMSwDNGgGdczCgvxHX4URAI1b-6BFR2DzlbbzZSNr_8ZSb24hWYILDJXTYm1FNswv_hFrqehyMJyD_q1KXmv1FXydItL5d4xUCKPUXVHHGGO3TZU5CYSUNXOQO_NnFQ=w511-h680-no?authuser=0"/>
             <span className="offerTitle">{props.card.supplier.name} {props.card.name}</span>
             <div className="buttons">
                 <Link to={`/product/${props.card.id}`}>

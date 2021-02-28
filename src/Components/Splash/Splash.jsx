@@ -5,8 +5,6 @@ import './Splash.css';
 
 const Splash = (props) => {
 
-
-
     return (
         <div className="splash">
             <header>
