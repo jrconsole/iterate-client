@@ -1,3 +1,8 @@
+div.splash {
+    display: grid;
+    justify-items: center;
+}
+
 header {
     margin: 250px 50px;
     text-align: center;
@@ -17,6 +22,10 @@ header h1 {
 main {
     margin: 40px;
     padding: 20px;
+    max-width: 1000px;
+    display: grid;
+    justify-items: center;
+
 }
 
 body {

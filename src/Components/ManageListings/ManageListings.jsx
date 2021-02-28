@@ -31,7 +31,7 @@ const ManageListings = (props) => {
                     {props.gpus.map(gpu => {
                         return (
                             <>
-                                <p>{gpu.id}, {gpu.name}</p>
+                                <p>{gpu.id}, {gpu.name}, {gpu.price/100}</p>
                                 <button onClick={() => openForm(gpu)}>Edit</button>
                                 <button onClick={() => onDelete(gpu.id)}>Delete</button>
                             </>

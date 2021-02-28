@@ -7,6 +7,8 @@ const EditForm = (props) => {
     const newGPU = props.gpu.id ? false : true;
 
     const [gpuName, setGPUName] = useState(newGPU ? null : props.gpu.name);
+    const [gpuPriceDollars, setGPUPriceDollars] = useState(newGPU ? null : Math.floor(props.gpu.price)/100);
+    const [gpuPriceCents, setGPUPriceCents] = useState(newGPU ? null : props.gpu.price % 100)
     const [selectedSupplier, setSelectedSupplier] = useState(newGPU ? null : props.gpu.supplier.id);
     const [supplierName, setSupplierName] = useState(null);
     const [newSupplier, setNewSupplier] = useState(false);
@@ -40,10 +42,12 @@ const EditForm = (props) => {
         }
 
         const gpuInput = { variables: {} }
+        const gpuPrice = parseInt(gpuPriceDollars*100) + (gpuPriceCents ? parseInt(gpuPriceCents) : null);
 
         if (newGPU) {
             gpuInput.variables.name = gpuName;
             gpuInput.variables.supplierId = supplierId;
+            gpuInput.variables.price = gpuPrice;
 
             await createGPU(gpuInput)
         } else {
@@ -53,6 +57,9 @@ const EditForm = (props) => {
             }
             if (props.gpu.supplier.id !== supplierId) {
                 gpuInput.variables.supplierId = supplierId
+            }
+            if (props.gpu.price !== gpuPrice) {
+                gpuInput.variables.price = gpuPrice;
             }
             console.log(gpuInput)
             await editGPU(gpuInput);
@@ -127,6 +134,24 @@ const EditForm = (props) => {
                         required />
 
                     {newSupplier ? renderNewSupplierFields() : renderSelectSupplier()}
+
+                    <input 
+                        type="number"
+                        id="gpuPriceDollarsEdit"
+                        name="gpuPriceDollars"
+                        placeholder="$50"
+                        value={gpuPriceDollars}
+                        onChange={(e) => setGPUPriceDollars(e.target.value)}
+                        required />
+                    <span>.</span>
+                    <input 
+                        type="number"
+                        id="gpuPriceCentsEdit"
+                        name="gpuPriceCents"
+                        placeholder="00"
+                        value={gpuPriceCents}
+                        onChange={(e) => setGPUPriceCents(e.target.value)}/>
+                    <span> /mo</span>
 
                     <input type='submit'/>
                 </form>
