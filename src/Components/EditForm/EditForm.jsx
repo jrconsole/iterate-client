@@ -3,6 +3,7 @@ import './EditForm.css';
 import { FileUpload } from '../FileUpload/FileUpload';
 import { addGPU, updateGPU, addSupplier, getSuppliers } from '../../util/graphql';
 import { useMutation, useQuery } from '@apollo/client';
+import axios from 'axios';
 
 const EditForm = (props) => {
     const newGPU = props.gpu.id ? false : true;
@@ -14,6 +15,8 @@ const EditForm = (props) => {
     const [supplierName, setSupplierName] = useState(null);
     const [newSupplier, setNewSupplier] = useState(false);
     const [allSuppliers, setAllSuppliers] = useState([]);
+    const [previewURL, setPreviewURL] = useState(newGPU ? null : props.gpu.imgURL);
+    const [imgFile, setImgFile] = useState(null);
 
     const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -29,8 +32,33 @@ const EditForm = (props) => {
         }
     }, [data])
 
+    const handleImgChange = (e) => {
+        const url = URL.createObjectURL(e.target.files[0]);
+        setPreviewURL(url);
+        setImgFile(e.target.files[0]);
+    }
+    
+    const uploadImg = async () => {    
+        const imgData = new FormData();
+        imgData.append("image", imgFile);
+        try {
+            const imgURL = await axios({
+                method: "post",
+                url: 'http://localhost:4000/upload', 
+                data: imgData,
+                headers: { "Content-Type": "multipart/form-data"}
+            });
+
+            return imgURL;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const submitForm = async (e) => {
         e.preventDefault();
+
+        const imgURL = await uploadImg();
 
         let supplierId;
         if (newSupplier) {
@@ -155,7 +183,8 @@ const EditForm = (props) => {
                         onChange={(e) => setGPUPriceCents(e.target.value)}/>
                     <span> /mo</span>
 
-                    <FileUpload />
+                    <input type="file" accept="image/*" onChange={handleImgChange} />
+                    <img className="imgPreview" src={previewURL} />
 
                     <input type='submit'/>
                 </form>

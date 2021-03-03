@@ -1,0 +1,9 @@
+/* .dzu-inputLabelWithFiles, .dzu-submitButtonContainer {
+    display: none!important;
+} */
+
+.imgPreview {
+    max-width: 300px;
+    max-height: 300px;
+}
+
