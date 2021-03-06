@@ -1,11 +1,14 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { getGPU } from '../../util/graphql';
 
 const Product = (props) => {
 
-    //***NEED TO GET FROM DATABASE IF NOT IN PROPS (user refreshed page)
-    const { id } = useParams();
-    const card = props.cards.find(findCard => findCard.id === id);
+    let { id } = useParams();
+    const { loading, error, data, refetch: refreshGPU } = useQuery(getGPU, { variables: { id }});
+    if (error) { console.log(error) }
+    const card = data ? data.gpu : null;
 
     const renderReserveButton = () => {
         if(card.reserved) {
@@ -20,7 +23,7 @@ const Product = (props) => {
         }
     }
 
-    return (
+    return !card ? null : (
         <>
             <p>{card.name}</p>
             {renderReserveButton()}

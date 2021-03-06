@@ -34,6 +34,22 @@ export const getGPUs = gql`
                 name
             }
             price
+            imgURL
+        }
+    }
+`
+
+export const getGPU = gql`
+    query gpu ($id: String!) {
+        gpu(id: $id) {
+            id
+            name
+            supplier {
+                id
+                name
+            }
+            price
+            imgURL
         }
     }
 `
@@ -41,14 +57,16 @@ export const getGPUs = gql`
 export const addGPU = gql`
     mutation addGPU (
         $name: String!,
-        $supplierId: String!
-        $price: Int!
+        $supplierId: String!,
+        $price: Int!,
+        $imgURL: String!
     ) {
         createGPU(
             gpu: { 
                 name: $name, 
                 supplierId: $supplierId, 
-                price: $price
+                price: $price,
+                imgURL: $imgURL
             }
         ) {
             id
@@ -58,6 +76,7 @@ export const addGPU = gql`
                 name
             }
             price
+            imgURL
         } 
     }
 `
@@ -67,14 +86,16 @@ export const updateGPU = gql`
         $id: String!
         $name: String,
         $supplierId: String,
-        $price: Int!
+        $price: Int,
+        $imgURL: String
     ) {
         updateGPU(
             gpuUpdate: { 
                 id: $id
                 name: $name, 
                 supplierId: $supplierId, 
-                price: $price
+                price: $price,
+                imgURL: $imgURL
             }
         ) {
             id
@@ -84,6 +105,7 @@ export const updateGPU = gql`
                 name
             }
             price
+            imgURL
         } 
     }
 `

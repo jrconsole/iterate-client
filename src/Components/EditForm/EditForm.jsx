@@ -42,13 +42,14 @@ const EditForm = (props) => {
         const imgData = new FormData();
         imgData.append("image", imgFile);
         try {
-            const imgURL = await axios({
+            const response = await axios({
                 method: "post",
                 url: 'http://localhost:4000/upload', 
                 data: imgData,
                 headers: { "Content-Type": "multipart/form-data"}
             });
-
+            const imgURL = response.data.imgURL;
+            
             return imgURL;
         } catch (error) {
             console.log(error);
@@ -57,8 +58,6 @@ const EditForm = (props) => {
 
     const submitForm = async (e) => {
         e.preventDefault();
-
-        const imgURL = await uploadImg();
 
         let supplierId;
         if (newSupplier) {
@@ -74,9 +73,12 @@ const EditForm = (props) => {
         const gpuPrice = parseInt(gpuPriceDollars*100) + (gpuPriceCents ? parseInt(gpuPriceCents) : null);
 
         if (newGPU) {
+            const imgURL = await uploadImg();
+
             gpuInput.variables.name = gpuName;
             gpuInput.variables.supplierId = supplierId;
             gpuInput.variables.price = gpuPrice;
+            gpuInput.variables.imgURL = imgURL;
 
             await createGPU(gpuInput)
         } else {
@@ -89,6 +91,11 @@ const EditForm = (props) => {
             }
             if (props.gpu.price !== gpuPrice) {
                 gpuInput.variables.price = gpuPrice;
+            }
+            if (props.gpu.imgURL !== previewURL) {
+                const imgURL = await uploadImg();
+
+                gpuInput.variables.imgURL = imgURL;
             }
             console.log(gpuInput)
             await editGPU(gpuInput);
