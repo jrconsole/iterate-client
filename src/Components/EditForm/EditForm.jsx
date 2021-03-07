@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './EditForm.css';
-import { FileUpload } from '../FileUpload/FileUpload';
+import { SpecForm } from '../SpecForm/SpecForm';
 import { addGPU, updateGPU, addSupplier, getSuppliers } from '../../util/graphql';
 import { useMutation, useQuery } from '@apollo/client';
 import axios from 'axios';
@@ -17,6 +17,7 @@ const EditForm = (props) => {
     const [allSuppliers, setAllSuppliers] = useState([]);
     const [previewURL, setPreviewURL] = useState(newGPU ? null : props.gpu.imgURL);
     const [imgFile, setImgFile] = useState(null);
+    const [specs, setSpecs] = useState({'General': {'Power': '50W'}});
 
     const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -158,7 +159,7 @@ const EditForm = (props) => {
         } else {
             return (
                 <form onSubmit={submitForm} >
-                    <h4>{newGPU ? `Add a GPU Listing` : `Edit ${props.gpu.name}`}</h4> 
+                    <h2>{newGPU ? `Add a GPU Listing` : `Edit ${props.gpu.name}`}</h2> 
                     
                     <input 
                         type="text"
@@ -193,6 +194,8 @@ const EditForm = (props) => {
                     <input type="file" accept="image/*" onChange={handleImgChange} />
                     <img className="imgPreview" src={previewURL} />
 
+                    <SpecForm gpu={props.gpu} specs={specs} setSpecs={setSpecs} />
+
                     <input type='submit'/>
                 </form>
             )
@@ -201,8 +204,9 @@ const EditForm = (props) => {
 
     return (
         <>
+            <div className='formBack' onClick={props.closeForm}></div>
             {renderForm()}
-            {/*<div className='formBack' onClick={props.closeForm}></div>*/}
+            
         </>
     );
 };

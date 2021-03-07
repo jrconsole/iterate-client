@@ -27,7 +27,7 @@ const ReserveForm = (props) => {
         } else {
             return (
                 <form onSubmit={submitForm} >
-                    <h4>reserve a {props.card.name}</h4>
+                    <h3>reserve a {props.card.name}</h3>
                     
                     <input
                         type="radio"
@@ -87,7 +87,7 @@ const ReserveForm = (props) => {
     return (
         <>
             {renderForm()}
-            {/*<div className='formBack' onClick={props.closeForm}></div>*/}
+            <div className='formBack' onClick={props.closeForm}></div>
         </>
     );
 };

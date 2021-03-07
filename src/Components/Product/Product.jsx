@@ -1,7 +1,8 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { getGPU } from '../../util/graphql';
+
 
 const Product = (props) => {
 
@@ -25,6 +26,7 @@ const Product = (props) => {
 
     return !card ? null : (
         <>
+            <Link to='/'><button>Home</button></Link>
             <p>{card.name}</p>
             {renderReserveButton()}
             {props.renderReserveForm()}
