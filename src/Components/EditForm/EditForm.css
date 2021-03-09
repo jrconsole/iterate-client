@@ -24,3 +24,7 @@ form {
     z-index: 1;
     position: relative;
 }
+
+.imgPreview {
+    max-width: 300px;
+}

@@ -17,7 +17,7 @@ const EditForm = (props) => {
     const [allSuppliers, setAllSuppliers] = useState([]);
     const [previewURL, setPreviewURL] = useState(newGPU ? null : props.gpu.imgURL);
     const [imgFile, setImgFile] = useState(null);
-    const [specs, setSpecs] = useState({'General': {'Power': '50W'}});
+    const [specs, setSpecs] = useState({/*'General': [['Power', '50W']]*/});
 
     const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -119,7 +119,7 @@ const EditForm = (props) => {
                     value={supplierName}
                     onChange={(e) => setSupplierName(e.target.value)}
                     required />
-                <button onClick={() => setNewSupplier(false)}>close</button>
+                <button type= "button" onClick={() => setNewSupplier(false)}>close</button>
             </>
         )
     }
@@ -148,7 +148,7 @@ const EditForm = (props) => {
                         )
                     })}
                 </select>
-                <button onClick={() => setNewSupplier(true)}>New Supplier</button>
+                <button type= "button" onClick={() => setNewSupplier(true)}>New Supplier</button>
             </>
         )
     }
