@@ -35,6 +35,7 @@ export const getGPUs = gql`
             }
             price
             imgURL
+            specs
         }
     }
 `
@@ -50,6 +51,7 @@ export const getGPU = gql`
             }
             price
             imgURL
+            specs
         }
     }
 `
@@ -59,14 +61,16 @@ export const addGPU = gql`
         $name: String!,
         $supplierId: String!,
         $price: Int!,
-        $imgURL: String!
+        $imgURL: String!,
+        $specs: String!
     ) {
         createGPU(
             gpu: { 
                 name: $name, 
                 supplierId: $supplierId, 
                 price: $price,
-                imgURL: $imgURL
+                imgURL: $imgURL,
+                specs: $specs
             }
         ) {
             id
@@ -76,7 +80,8 @@ export const addGPU = gql`
                 name
             }
             price
-            imgURL
+            imgURL,
+            specs
         } 
     }
 `
@@ -87,7 +92,8 @@ export const updateGPU = gql`
         $name: String,
         $supplierId: String,
         $price: Int,
-        $imgURL: String
+        $imgURL: String,
+        $specs: String
     ) {
         updateGPU(
             gpuUpdate: { 
@@ -95,7 +101,8 @@ export const updateGPU = gql`
                 name: $name, 
                 supplierId: $supplierId, 
                 price: $price,
-                imgURL: $imgURL
+                imgURL: $imgURL,
+                specs: $specs
             }
         ) {
             id
@@ -106,6 +113,7 @@ export const updateGPU = gql`
             }
             price
             imgURL
+            specs
         } 
     }
 `

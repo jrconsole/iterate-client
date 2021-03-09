@@ -17,7 +17,7 @@ const EditForm = (props) => {
     const [allSuppliers, setAllSuppliers] = useState([]);
     const [previewURL, setPreviewURL] = useState(newGPU ? null : props.gpu.imgURL);
     const [imgFile, setImgFile] = useState(null);
-    const [specs, setSpecs] = useState({/*'General': [['Power', '50W']]*/});
+    const [specs, setSpecs] = useState(JSON.parse(props.gpu.specs));
 
     const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -80,6 +80,7 @@ const EditForm = (props) => {
             gpuInput.variables.supplierId = supplierId;
             gpuInput.variables.price = gpuPrice;
             gpuInput.variables.imgURL = imgURL;
+            gpuInput.variables.specs = JSON.stringify(specs);
 
             await createGPU(gpuInput)
         } else {
@@ -97,6 +98,9 @@ const EditForm = (props) => {
                 const imgURL = await uploadImg();
 
                 gpuInput.variables.imgURL = imgURL;
+            }
+            if (props.gpu.specs !== specs) {
+                gpuInput.variables.specs = JSON.stringify(specs);
             }
             console.log(gpuInput)
             await editGPU(gpuInput);
