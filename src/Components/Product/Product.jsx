@@ -2,14 +2,34 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { getGPU } from '../../util/graphql';
+import './Product.css';
 
 
-const Product = (props) => {
+export const Product = (props) => {
 
     let { id } = useParams();
     const { loading, error, data, refetch: refreshGPU } = useQuery(getGPU, { variables: { id }});
     if (error) { console.log(error) }
     const card = data ? data.gpu : null;
+
+    const renderSpecs = (allSpecs, category) => {
+        const specs = allSpecs[category];
+        return specs.map(spec => {
+            return <span>{spec[0]}: {spec[1]}</span>
+        })
+    }
+
+    const renderSpecCategories = () => {
+        const specs = JSON.parse(card.specs);
+        return Object.keys(specs).map(category => {
+            return (
+                <div className='product category'>
+                    <h4>{category}</h4>
+                    {renderSpecs(specs, category)}
+                </div>
+            )
+        })
+    }
 
     const renderReserveButton = () => {
         if(card.reserved) {
@@ -27,11 +47,13 @@ const Product = (props) => {
     return !card ? null : (
         <>
             <Link to='/'><button>Home</button></Link>
-            <p>{card.name}</p>
+            <h2>{card.name}</h2>
+            <img className="product" src={card.imgURL} />
+            <h3>Specifications</h3>
+            {renderSpecCategories()}
             {renderReserveButton()}
             {props.renderReserveForm()}
         </>
     );
 };
 
-export default Product;

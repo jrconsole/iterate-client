@@ -5,7 +5,7 @@ import { addGPU, updateGPU, addSupplier, getSuppliers } from '../../util/graphql
 import { useMutation, useQuery } from '@apollo/client';
 import axios from 'axios';
 
-const EditForm = (props) => {
+export const EditForm = (props) => {
     const newGPU = props.gpu.id ? false : true;
 
     const [gpuName, setGPUName] = useState(newGPU ? null : props.gpu.name);
@@ -17,7 +17,7 @@ const EditForm = (props) => {
     const [allSuppliers, setAllSuppliers] = useState([]);
     const [previewURL, setPreviewURL] = useState(newGPU ? null : props.gpu.imgURL);
     const [imgFile, setImgFile] = useState(null);
-    const [specs, setSpecs] = useState(JSON.parse(props.gpu.specs));
+    const [specs, setSpecs] = useState(newGPU ? {} : JSON.parse(props.gpu.specs));
 
     const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -214,5 +214,3 @@ const EditForm = (props) => {
         </>
     );
 };
-
-export default EditForm;

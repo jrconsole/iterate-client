@@ -12,6 +12,7 @@ div.offerCard {
 
 .offerCard img {
     max-width: 300px;
+    max-height: 200px;
     grid-area: 1 / 1 / span 2 / span 1;
 }
 

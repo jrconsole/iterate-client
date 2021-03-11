@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import EditForm from '../EditForm/EditForm';
+import { EditForm } from '../EditForm/EditForm';
+import { OfferCard } from '../OfferCard/OfferCard';
 import { useMutation } from '@apollo/client';
 import { deleteGPU } from '../../util/graphql';
 
-const ManageListings = (props) => {
+export const ManageListings = (props) => {
     const [ editFormActive, setEditFormActive ] = useState(false);
     const [selectedGPU, setSelectedGPU] = useState({});
 
@@ -31,9 +32,7 @@ const ManageListings = (props) => {
                     {props.gpus.map(gpu => {
                         return (
                             <>
-                                <p>{gpu.id}, {gpu.name}, {gpu.price/100}</p>
-                                <button onClick={() => openForm(gpu)}>Edit</button>
-                                <button onClick={() => onDelete(gpu.id)}>Delete</button>
+                                <OfferCard view='manage' card={gpu} openForm={openForm} onDelete={onDelete} />
                             </>
                         )
                     })}
@@ -46,12 +45,9 @@ const ManageListings = (props) => {
 
     return (
         <>
-            <Link to='/manage'><button>Dashboard</button></Link>
             <button onClick={() => openForm({})}>Add Listing</button>
             {renderListings()}
             {editFormActive ? <EditForm gpu={selectedGPU} closeForm={closeEditForm} /> : null}
         </>
     );
 };
-
-export default ManageListings;

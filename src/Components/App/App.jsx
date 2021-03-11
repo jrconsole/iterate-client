@@ -6,11 +6,12 @@ import {
 } from "react-router-dom";
 import * as _ from 'lodash';
 import './App.css';
-import Splash from '../Splash/Splash';
-import Dashboard from '../Dashboard/Dashboard';
-import ManageListings from '../ManageListings/ManageListings';
-import Product from '../Product/Product';
-import ReserveForm from '../ReserveForm/ReserveForm';
+import { Splash } from '../Splash/Splash';
+import { Dashboard } from '../Dashboard/Dashboard';
+import { ManageListings } from '../ManageListings/ManageListings';
+import { ReservationList } from '../ReservationList/ReservationList';
+import { Product } from '../Product/Product';
+import { ReserveForm } from '../ReserveForm/ReserveForm';
 //import NavBar from '../NavBar/NavBar';
 import { useQuery, useMutation } from '@apollo/client';
 import { getGPUs, addPerson, addReservation } from '../../util/graphql';
@@ -124,11 +125,8 @@ function App() {
                 startRes={startReservation} 
                 renderReserveForm={renderReserveForm} />
             </Route>
-            <Route exact path="/manage">
-              <Dashboard />
-            </Route>
-            <Route path="/manage/listings">
-              <ManageListings gpus={gpus} refresh={refreshGPUs} />
+            <Route exact path="/dashboard">
+              <Dashboard gpus={gpus} refresh={refreshGPUs}/>
             </Route>
             <Route path="/product/:id" >
               <Product 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ReserveForm.css';
 
-const ReserveForm = (props) => {
+export const ReserveForm = (props) => {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -91,5 +91,3 @@ const ReserveForm = (props) => {
         </>
     );
 };
-
-export default ReserveForm;

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import OfferCard from '../OfferCard/OfferCard';
+import { OfferCard } from '../OfferCard/OfferCard';
 
-const OfferList = (props) => {
+export const OfferList = (props) => {
     const gpus = props.cards;
 
     const renderCards = () => {
@@ -24,5 +24,3 @@ const OfferList = (props) => {
         </>
     );
 };
-
-export default OfferList;

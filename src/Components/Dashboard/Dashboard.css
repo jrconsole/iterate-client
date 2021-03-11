@@ -1,0 +1,17 @@
+.dashboard.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.dashboard.selection {
+    margin: 20px;
+    padding: 40px;
+    border: 1px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.dashboard.active {
+    background-color: red;
+}

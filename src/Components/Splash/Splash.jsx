@@ -1,9 +1,9 @@
 import React from 'react';
-import OfferList from '../OfferList/OfferList';
+import { OfferList } from '../OfferList/OfferList';
 import './Splash.css';
 
 
-const Splash = (props) => {
+export const Splash = (props) => {
 
     return (
         <div className="splash">
@@ -20,5 +20,3 @@ const Splash = (props) => {
         </div>
     );
 };
-
-export default Splash;

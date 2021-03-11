@@ -1,80 +1,80 @@
 import React, { useEffect, useState } from 'react';
+import './Dashboard.css';
 import { Link } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import { getReservations, updateReservation } from '../../util/graphql';
+import { ReservationList } from '../ReservationList/ReservationList';
+import { ManageListings } from '../ManageListings/ManageListings';
 
-const Dashboard = (props) => {
+export const Dashboard = (props) => {
+    const [ dataSelection, setDataSelection ] = useState(null);
     const { loading, error, data, refetch: refreshReservations } = useQuery(getReservations);
     const [changeResStatus, { error: statusError }] = useMutation(updateReservation);
     const [ reservations, setReservations ] = useState([]);
+
     useEffect(() => {
         if(data) {
             setReservations(data.reservations);
         }
     }, [data])
 
-    const handleClick = (id, status) => {
-        changeResStatus({variables: { id, status}});
-        refreshReservations(); 
-    }
-
-    const renderStatusButtons = (reservation) => {
-        if(reservation.status === 'ACTIVE') {
-            return (
-                <>
-                    <button onClick={() => handleClick(reservation.id, 'REMOVED')}>remove</button>
-                    <button onClick={() => handleClick(reservation.id, 'LEASED')}>leased</button>
-                </>
-            )
-        } else if (reservation.status === 'LEASED') {
-            return (
-                <>
-                    <button onClick={() => handleClick(reservation.id, 'REMOVED')}>remove</button>
-                    <button onClick={() => handleClick(reservation.id, 'ACTIVE')}>activate</button>
-                </>
-            )            
-        } else if (reservation.status === 'REMOVED') {
-            return (
-                <>
-                    <button onClick={() => handleClick(reservation.id, 'ACTIVE')}>activate</button>
-                </>
-            )            
+    const renderSelection = () => {
+        if (dataSelection === 'reservations') {
+            if (loading) { return <p>loading reservations...</p> };
+            if (error) {
+                console.log(error);
+                return <p>There was an error loading the reservations. Check the developer console for more info...</p>;
+            }
+            if (statusError) {
+                console.log(statusError);
+                return <p>There was an error updating the reservation status. Please refresh the page and try again.</p>
+            }
+            return <ReservationList 
+                        reservations={reservations} 
+                        refresh={refreshReservations} 
+                        updateStatus={changeResStatus}/>
+        } else if (dataSelection === 'listings') {
+            return <ManageListings gpus={props.gpus} refresh={props.refresh} />
         }
     }
 
-    const renderReservations = () => {
-        if (loading) return <p>loading reservations...</p>;
-        if (error) {
-            console.log(error);
-            return <p>There was an error loading the reservations. Check the developer console for more info...</p>;
-        }
-        if(reservations.length) {
+    const renderDashboard = () => {
+        if (dataSelection) {
             return (
                 <>
-                    <h4>You have {reservations.length} reservations!</h4>
-                    {reservations.map(reservation => {
-                        const date = new Date(0)
-                        date.setUTCMilliseconds(reservation.date)
-                        return (
-                            <>
-                                <p>{reservation.id}, {reservation.gpu.name}, {reservation.person.firstName}, {date.toString()}, {reservation.status}</p>
-                                {renderStatusButtons(reservation)}
-                            </>
-                        )
-                    })}
+                    <button 
+                        className={`dashboard ${dataSelection === 'reservations' ? 'active' : null}`}
+                        onClick={() => setDataSelection('reservations')}>
+                        Reservations</button>
+                    <button 
+                        className={`dashboard ${dataSelection === 'listings' ? 'active' : null}`}
+                        onClick={() => setDataSelection('listings')}>
+                        Listings</button>
+    
+                    {renderSelection()}
                 </>
             )
         } else {
-            return 'Go get some Reservations!'
+            return (
+                <div className='dashboard container'>
+                    <div 
+                        className='dashboard selection' 
+                        onClick={() => setDataSelection('reservations')}>
+                        Reservations</div>
+                    <div 
+                        className='dashboard selection'
+                        onClick={() => setDataSelection('listings')}>
+                        Listings</div>
+                </div>
+            )
         }
     }
 
     return (
         <>
-            <Link to='/manage/listings'><button>Manage Listings</button></Link>
-            {renderReservations()}
+            <Link to='/'><button>Live Page</button></Link>
+            
+            {renderDashboard()}
         </>
     );
 };
-
-export default Dashboard;
