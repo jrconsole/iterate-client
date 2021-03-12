@@ -32,7 +32,8 @@ export const OfferCard = (props) => {
             return <p>reserved</p>
         } else {
             return (
-                <button 
+                <button
+                    className='primary' 
                     onClick={() => props.startRes(props.card)}>
                     Reserve
                 </button>
@@ -41,7 +42,7 @@ export const OfferCard = (props) => {
     }
 
     return (
-        <div className="offerCard">
+        <div className="offerCard card">
             <img src={props.card.imgURL} />
             <span className="offerTitle">{props.card.supplier.name} {props.card.name}</span>
             <div className="buttons">

@@ -37,6 +37,7 @@ export const Product = (props) => {
         } else {
             return (
                 <button 
+                    className='primary'
                     onClick={() => props.startRes(card)}>
                     Reserve
                 </button>

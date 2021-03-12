@@ -4,14 +4,8 @@
     justify-content: center;
 }
 
-.dashboard.selection {
+.dashboard.selection.preview {
     margin: 20px;
     padding: 40px;
-    border: 1px solid white;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.dashboard.active {
-    background-color: red;
+    background-color: darkorchid;
 }

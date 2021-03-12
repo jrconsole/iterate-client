@@ -1,3 +1,30 @@
 button {
   margin: 5px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  cursor: pointer;
+  color: whitesmoke;
+  padding: 10px;
+  background-color: rgb(92, 92, 92);
+}
+
+button:hover, button.primary {
+  background-color: darkorchid;
+}
+
+.card {
+  margin: 20px;
+  padding: 15px;
+  background-color: rgba(66, 65, 65, 0.938);
+  border-radius: 10px;
+}
+
+.formBack {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  background:rgba(0,0,0,0.5);
 }

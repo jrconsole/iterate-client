@@ -1,0 +1,34 @@
+.reservation.card {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+.reservation.main {
+    width: 100%;
+    justify-items: left;
+    grid-area: 1 / 1 / span 1 / span 1;
+    display: grid;
+    grid-template-columns: 3fr 3fr 1fr;
+}
+
+.reservation.date {
+    grid-area: 2 / 1 / span 1 / span 3;
+}
+
+.reservation.card h4 {
+    margin: 0px;
+}
+
+.reservation span {
+    display: block;
+}
+
+.reservation.cardInfo h4 {
+    text-align: center;
+}
+
+.reservation.buttons {
+    align-self: center;
+}

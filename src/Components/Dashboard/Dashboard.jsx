@@ -38,43 +38,36 @@ export const Dashboard = (props) => {
         }
     }
 
-    const renderDashboard = () => {
-        if (dataSelection) {
-            return (
-                <>
+    const renderSelectOptions = () => {
+        return (
+            <div className='dashboard container'>
                     <button 
-                        className={`dashboard ${dataSelection === 'reservations' ? 'active' : null}`}
+                        className={`
+                            dashboard 
+                            selection 
+                            ${dataSelection === 'reservations' ? 'primary' : null}
+                            ${dataSelection ? null : 'preview'}`}
                         onClick={() => setDataSelection('reservations')}>
-                        Reservations</button>
+                        Reservations
+                    </button>
                     <button 
-                        className={`dashboard ${dataSelection === 'listings' ? 'active' : null}`}
+                        className={`
+                            dashboard 
+                            selection 
+                            ${dataSelection === 'listings' ? 'primary' : null}
+                            ${dataSelection ? null : 'preview'}`}
                         onClick={() => setDataSelection('listings')}>
-                        Listings</button>
-    
-                    {renderSelection()}
-                </>
-            )
-        } else {
-            return (
-                <div className='dashboard container'>
-                    <div 
-                        className='dashboard selection' 
-                        onClick={() => setDataSelection('reservations')}>
-                        Reservations</div>
-                    <div 
-                        className='dashboard selection'
-                        onClick={() => setDataSelection('listings')}>
-                        Listings</div>
-                </div>
-            )
-        }
+                        Listings
+                    </button>
+            </div>
+        )
     }
 
     return (
         <>
             <Link to='/'><button>Live Page</button></Link>
-            
-            {renderDashboard()}
+            {renderSelectOptions()}
+            {renderSelection()}
         </>
     );
 };

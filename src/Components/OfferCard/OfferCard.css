@@ -1,9 +1,4 @@
 div.offerCard {
-    margin: 20px;
-    padding: 15px;
-    background-color: rgba(66, 65, 65, 0.938);
-
-    border-radius: 10px;
     display: grid;
     grid-template: 1fr 2fr / 3fr 4fr 1fr;
     justify-items: center;
@@ -20,7 +15,7 @@ div.offerCard {
     grid-area: 1 / 3 / span 2 / span 1;
 }
 
-.offerCard button {
+.card button {
     display: block;
     width: 100%;
 }
