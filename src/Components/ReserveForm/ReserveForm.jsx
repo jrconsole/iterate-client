@@ -78,7 +78,7 @@ export const ReserveForm = (props) => {
                         onChange={(e) => setPhone(e.target.value)}
                         required />
 
-                    <input type='submit'/>
+                    <button className='primary' type='submit'>Submit</button>
                 </form>
             )
         }
