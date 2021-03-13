@@ -23,7 +23,13 @@ export const ReserveForm = (props) => {
 
     const renderForm = () => {
         if (formSubmitted) {
-            return <h1>thanks!</h1>
+            return (
+                <div className="submitMessage">
+                    <h1>Thanks!</h1>
+                    <h4>We'll notify you when your card is available.</h4>
+                    <button onClick={props.closeForm} >Close</button>
+                </div>
+            )
         } else {
             return (
                 <form onSubmit={submitForm} >
@@ -89,7 +95,11 @@ export const ReserveForm = (props) => {
                         onChange={(e) => setPhone(e.target.value)}
                         required />
 
-                    <button className='primary' type='submit'>Submit</button>
+                    <div className="buttons">
+                        <button onClick={props.closeForm}>Cancel</button>
+                        <button className='primary' type='submit'>Submit</button>
+                    </div>
+                    
                 </form>
             )
         }

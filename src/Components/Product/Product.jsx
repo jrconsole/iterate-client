@@ -15,7 +15,12 @@ export const Product = (props) => {
     const renderSpecs = (allSpecs, category) => {
         const specs = allSpecs[category];
         return specs.map(spec => {
-            return <span>{spec[0]}: {spec[1]}</span>
+            return (
+                <div className='spec'>
+                    <span>{spec[0]}</span>
+                    <span>{spec[1]}</span>
+                </div>
+            )
         })
     }
 
@@ -23,10 +28,12 @@ export const Product = (props) => {
         const specs = JSON.parse(card.specs);
         return Object.keys(specs).map(category => {
             return (
-                <div className='product category'>
+                <>
                     <h4>{category}</h4>
-                    {renderSpecs(specs, category)}
-                </div>
+                    <div className='specs'>
+                        {renderSpecs(specs, category)}
+                    </div>
+                </>
             )
         })
     }
@@ -46,15 +53,25 @@ export const Product = (props) => {
     }
 
     return !card ? null : (
-        <div className="product">
-            <Link to='/'><button>Home</button></Link>
-            <h2>{card.name}</h2>
-            <img src={card.imgURL} />
-            <h3>Specifications</h3>
-            {renderSpecCategories()}
-            {renderReserveButton()}
+        <>
+        <Link to='/'><button>Home</button></Link>
+            <div className="product">
+
+                <h2>{card.supplier.name} {card.name}</h2>
+                <img src={card.imgURL} />
+                {renderReserveButton()}
+
+                <div className="card">
+                    <h3>Specifications</h3>
+                    <div className="categories">
+                        {renderSpecCategories()}
+                    </div>
+                    {renderReserveButton()}
+                </div>
+
+            </div>
             {props.renderReserveForm()}
-        </div>
+        </>
     );
 };
 

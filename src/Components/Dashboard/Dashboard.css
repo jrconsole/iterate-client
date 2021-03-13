@@ -7,5 +7,7 @@
 .dashboard.selection.preview {
     margin: 20px;
     padding: 40px;
+    width: 30%;
+    height: 200px;
     background-color: darkorchid;
 }

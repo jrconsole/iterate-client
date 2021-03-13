@@ -6,6 +6,21 @@
 
 .resForm form {
     max-width: 400px;
-    display: flex;
-    flex-flow: column;
+    display: grid;
 }
+
+.resForm form .buttons {
+    margin: 10px 0px;
+    justify-self: center;
+}
+
+.resForm .submitMessage {
+    z-index: 2;
+    position: fixed;
+    top: 30%;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+
