@@ -46,15 +46,15 @@ export const Product = (props) => {
     }
 
     return !card ? null : (
-        <>
+        <div className="product">
             <Link to='/'><button>Home</button></Link>
             <h2>{card.name}</h2>
-            <img className="product" src={card.imgURL} />
+            <img src={card.imgURL} />
             <h3>Specifications</h3>
             {renderSpecCategories()}
             {renderReserveButton()}
             {props.renderReserveForm()}
-        </>
+        </div>
     );
 };
 
