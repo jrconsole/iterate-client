@@ -2,22 +2,6 @@ select:invalid {
     color: gray;
 }
 
-option {
-    color: black
-}
-
-form {
-    margin: 20px; 
-    padding: 15px;
-    background-color: rgba(66, 65, 65, 0.938);
-    border-radius: 10px;
-    z-index: 1;
-    position: fixed;
-    top: 100px;
-    max-height: 500px;
-    overflow-y: scroll;
-}
-
 .imgPreview {
     max-width: 300px;
 }

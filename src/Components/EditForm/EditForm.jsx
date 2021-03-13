@@ -200,7 +200,7 @@ export const EditForm = (props) => {
 
                     <SpecForm gpu={props.gpu} specs={specs} setSpecs={setSpecs} />
 
-                    <input type='submit'/>
+                    <button className='primary' type='submit'>Submit</button>
                 </form>
             )
         }

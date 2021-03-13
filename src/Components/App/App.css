@@ -25,6 +25,65 @@ button:hover, button.primary {
   width: 100%;
   position: fixed;
   top: 0px;
-  left: 0;
   background:rgba(0,0,0,0.5);
+}
+
+form {
+  margin: 20px; 
+  padding: 15px;
+  background-color: rgb(66, 65, 65);
+  border-radius: 10px;
+  z-index: 2;
+  position: fixed;
+  top: 100px;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+input, select {
+  background-color: rgb(43, 42, 42);
+  border: none;
+  border-radius: 10px;
+  color:whitesmoke;
+  font-size: large;
+  outline: none;
+  padding: 10px;
+  margin: 5px;
+}
+
+.radio {
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-gap: 0.5em;
+  margin: 5px;
+}
+
+.radioInput {
+  display: flex;
+}
+
+.radioInput input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.radioInput input:checked + .radioControl {
+  background-color: darkorchid;
+}
+
+.radioControl {
+  display: block;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: 0.1em solid whitesmoke;
+}
+
+select:invalid {
+  color: gray;
+}
+
+option {
+  color: whitesmoke;
 }

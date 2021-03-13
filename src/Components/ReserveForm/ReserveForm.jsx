@@ -27,24 +27,35 @@ export const ReserveForm = (props) => {
         } else {
             return (
                 <form onSubmit={submitForm} >
-                    <h3>reserve a {props.card.name}</h3>
+                    <h2>Reserve - {props.card.name}</h2>
                     
-                    <input
-                        type="radio"
-                        id="foundersChoiceTrue"
-                        name="founders"
-                        value={true}
-                        onClick={() => setFounders(true)}
-                        required/>
-                    <label htmlFor="foundersChoiceTrue">Founders Edition Only</label>
-                    <input
-                        type="radio"
-                        id="foundersChoiceFalse"
-                        name="founders"
-                        value={false}
-                        onClick={() => setFounders(false)}
-                        required/>
-                    <label htmlFor="foundersChoiceFalse">All Variants</label>
+                    <label class="radio">
+                        <span className="radioInput">
+                            <input
+                                type="radio"
+                                id="foundersChoiceTrue"
+                                name="founders"
+                                value={true}
+                                onClick={() => setFounders(true)}
+                                required/>
+                            <span className="radioControl"></span>
+                        </span>
+                        <span class="radioLabel">Founders Edition Only</span>
+                    </label>
+                    {/* <label htmlFor="foundersChoiceTrue">Founders Edition Only</label> */}
+                    <label class="radio">
+                        <span className="radioInput">
+                            <input
+                                type="radio"
+                                id="foundersChoiceFalse"
+                                name="founders"
+                                value={false}
+                                onClick={() => setFounders(false)}
+                                required/>
+                            <span className="radioControl"></span>
+                        </span>
+                        <span className="radioLabel">All Variants</span>
+                    </label>
                     <input 
                         type="text"
                         id="firstNameRes"
@@ -85,9 +96,9 @@ export const ReserveForm = (props) => {
     }
 
     return (
-        <>
+        <div className="resForm">
             {renderForm()}
             <div className='formBack' onClick={props.closeForm}></div>
-        </>
+        </div>
     );
 };

@@ -73,19 +73,17 @@ export const ReservationList = (props) => {
             })
             return (
                 <>
-                    <h3>You have {activeReservations.length} active reservations!</h3>
-
-                    <h3>Active</h3>
+                    <h3>Active: {activeReservations.length}</h3>
                     {!activeReservations.length ? 
                         'No active reservations' : 
                         activeReservations.map(reservation => renderReservation(reservation) )}
 
-                    <h3>Leased</h3>
+                    <h3>Leased: {leasedReservations.length}</h3>
                     {!leasedReservations.length ? 
                         'No leased reservations' :
                         leasedReservations.map(reservation => renderReservation(reservation) )}
 
-                    <h3>Removed</h3>
+                    <h3>Removed: {removedReservations.length}</h3>
                     {!removedReservations.length ? 
                         'No removed reservations' :
                         removedReservations.map(reservation => renderReservation(reservation) )}
