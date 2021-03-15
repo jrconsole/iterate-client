@@ -23,4 +23,9 @@
     justify-items: center;
 }
 
+.resForm .submitMessage button {
+    margin-top: 20px;
+    /* max-width: 100px; */
+}
+
 

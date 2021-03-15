@@ -54,7 +54,7 @@ export const Product = (props) => {
 
     return !card ? null : (
         <>
-        <Link to='/'><button>Home</button></Link>
+        <Link to='/'><button className="nav">Home</button></Link>
             <div className="product">
 
                 <h2>{card.supplier.name} {card.name}</h2>

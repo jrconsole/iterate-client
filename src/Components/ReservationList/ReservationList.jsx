@@ -37,22 +37,24 @@ export const ReservationList = (props) => {
         date.setUTCMilliseconds(reservation.date)
         return (
             <div className="reservation card"> 
-                <div className="reservation main">
-                    <div className="reservation personInfo">
+                <div className="main">
+                    <div className="personInfo">
                         <h4>{reservation.person.firstName} {reservation.person.lastName}</h4>
                         <span>{reservation.person.email}</span>
                         <span>{reservation.person.phone}</span>
                     </div>
-                    <div className='reservation cardInfo'>
+                    <div className='cardInfo'>
                         <h4>{reservation.gpu.name}</h4>
                         <span>{reservation.foundersOnly ? 'Founders Only' : 'All Variants'}</span>
                     </div>
-                    {/*<span>{reservation.status}</span>*/}
-                    <div className="reservation buttons">
-                        {renderStatusButtons(reservation)}
-                    </div>
                 </div>
-                <span className="reservation date">{date.toLocaleString()}</span>
+                <div className="buttons">
+                        {renderStatusButtons(reservation)}
+                </div>
+                <div className="reservationInfo">
+                    <span>{date.toLocaleString()}</span>
+                    <span>{reservation.id}</span>
+                </div>
             </div>
         )
     }

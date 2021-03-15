@@ -9,24 +9,29 @@ export const ReserveForm = (props) => {
     const [phone, setPhone] = useState('');
     const [founders, setFounders] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [reservation, setReservation] = useState({});
 
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
         e.preventDefault();
         const userInput = { 
             info: { firstName, lastName, email, phone }, 
             foundersOnly: founders 
         };
 
-        props.submitRes(userInput, props.card);
+        const reservation = await props.submitRes(userInput, props.card);
+
         setFormSubmitted(true);
+        setReservation(reservation);
     }
 
     const renderForm = () => {
         if (formSubmitted) {
             return (
-                <div className="submitMessage">
+                <div className="submitMessage card">
                     <h1>Thanks!</h1>
-                    <h4>We'll notify you when your card is available.</h4>
+                    <span>Your reservation number is:</span>
+                    <h4> {reservation.id}</h4>
+                    <span>We'll notify you when your card is available.</span>
                     <button onClick={props.closeForm} >Close</button>
                 </div>
             )

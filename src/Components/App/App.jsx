@@ -67,19 +67,22 @@ function App() {
       }
       //---check if there is an existing user to avoid creating duplicate
 
-      await createReservation({
+      const response = await createReservation({
           variables: { 
               gpuId: card.id, 
               personId: person.id, 
               foundersOnly: personInput.foundersOnly
           }
       })
+      const newReservation = response.data.createReservation;
 
       if (personError || reservationError) {
           const error = personError ? personError : reservationError;
           console.log(error);
       }
       updateReservations(card);
+      console.log('reservation', newReservation);
+      return newReservation;
   }
 
   const updateReservations = (card) => {

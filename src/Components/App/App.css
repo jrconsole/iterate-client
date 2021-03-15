@@ -8,6 +8,7 @@ button {
   padding: 10px 15px;
   background-color: rgb(92, 92, 92);
   height: 35px;
+  max-width: 100px;
 }
 
 button:hover, button.primary {
@@ -87,4 +88,9 @@ select:invalid {
 
 option {
   color: whitesmoke;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
 }
