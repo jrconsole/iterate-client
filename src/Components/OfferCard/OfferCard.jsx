@@ -29,7 +29,7 @@ export const OfferCard = (props) => {
 
     const renderReserveButton = () => {
         if(props.card.reserved) {
-            return <p>reserved</p>
+            return <button className='disabled'>Reserved</button>
         } else {
             return (
                 <button

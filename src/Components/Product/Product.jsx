@@ -39,8 +39,10 @@ export const Product = (props) => {
     }
 
     const renderReserveButton = () => {
-        if(card.reserved) {
-            return <p>reserved</p>
+        const stateCard = props.cards.filter(stateCard => stateCard.id === card.id);
+        const reserved = stateCard.length ? stateCard[0].reserved : false;
+        if(reserved) {
+            return <button className='disabled'>Reserved</button>
         } else {
             return (
                 <button 
@@ -52,7 +54,7 @@ export const Product = (props) => {
         }
     }
 
-    return !card ? null : (
+    return !card ? ("Sorry, we're having trouble finding that product.") : (
         <>
         <Link to='/'><button className="nav">Home</button></Link>
             <div className="product">
