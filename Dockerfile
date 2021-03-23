@@ -16,6 +16,9 @@ COPY ./src ./src
 
 COPY ./public ./public
 
+ARG REACT_APP_ENV
+ENV REACT_APP_ENV=$REACT_APP_ENV
+
 RUN npm run build
 
 RUN npm prune --production

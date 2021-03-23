@@ -9,16 +9,12 @@ import {
   HttpLink,
   InMemoryCache
 } from '@apollo/client';
-require('dotenv')
-
-const serverURL = process.env.NODE_ENV === 'production' ? 
-    'https://iterate-server-x7jsd.ondigitalocean.app/graphql' :
-      'http://localhost:4000/graphql';
+import { serverURL } from './util/graphql';
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: serverURL
+    uri: `${serverURL}/graphql`
   })
 })
 

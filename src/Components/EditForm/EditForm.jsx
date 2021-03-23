@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './EditForm.css';
 import { SpecForm } from '../SpecForm/SpecForm';
-import { addGPU, updateGPU, addSupplier, getSuppliers } from '../../util/graphql';
+import { serverURL, addGPU, updateGPU, addSupplier, getSuppliers } from '../../util/graphql';
 import { useMutation, useQuery } from '@apollo/client';
 import axios from 'axios';
 
@@ -45,7 +45,7 @@ export const EditForm = (props) => {
         try {
             const response = await axios({
                 method: "post",
-                url: 'http://localhost:4000/upload', 
+                url: `${serverURL}/upload`, 
                 data: imgData,
                 headers: { "Content-Type": "multipart/form-data"}
             });
