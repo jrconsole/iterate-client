@@ -8,10 +8,6 @@ import './Product.css';
 export const Product = (props) => {
 
     let { id } = useParams();
-    if (!id) {
-        const path = window.location.pathname.split("/");
-        id = (path[path.length-1])
-    }
     const { loading, error, data, refetch: refreshGPU } = useQuery(getGPU, { variables: { id }});
     if (error) { console.log(error) }
     const card = data ? data.gpu : null;
