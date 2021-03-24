@@ -2,7 +2,9 @@ import { gql } from '@apollo/client';
 
 export const serverURL = process.env.REACT_APP_ENV === 'production' ? 
 'https://iterate-server-x7jsd.ondigitalocean.app' :
-    'http://localhost:4000';
+    (process.env.REACT_APP_ENV === 'portfolio' ? 
+        'https://iterate-server-dev-mxvdn.ondigitalocean.app' : 
+            'http://localhost:4000');
 
 export const getSuppliers = gql`
     query {
