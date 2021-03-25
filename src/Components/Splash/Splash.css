@@ -4,7 +4,17 @@ div.splash {
 }
 
 header {
-    margin: 250px 50px;
+    height: 1000px;
+    width: 100%;
+    background-image: url('../../images/iterate-background.JPG');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.splash .heading {
     text-align: center;
 }
 
@@ -29,9 +39,10 @@ main {
 }
 
 body {
-    background-image: url('../../images/iterate-background.JPG');
-    background-color: #000000;
-    background-size: cover;
+    background-color: #1a1a1a;
+    background-size: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
     color: whitesmoke;
 }
 
@@ -39,4 +50,15 @@ a {
     color: whitesmoke;
     text-decoration: none;
     font-weight: bold;
+}
+
+@media only screen and (max-width: 550px) {
+    header {
+        height: 700px;
+    }
+
+    main {
+        margin: 10px;
+        padding: 10px;
+    }
 }

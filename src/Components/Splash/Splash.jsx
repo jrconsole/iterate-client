@@ -10,8 +10,10 @@ export const Splash = (props) => {
         <div className="splash">
             <Link to='/manage'><button className="nav">Manage</button></Link>
             <header>
-                <h1>ITERATE</h1>
-                <h4 className='subtitle'>Lease your card. Stay ahead of the game.</h4>
+                <div class="heading">
+                    <h1>ITERATE</h1>
+                    <h4 className='subtitle'>Lease your card. Stay ahead of the game.</h4>
+                </div>
             </header>
             <main>
             <OfferList 
