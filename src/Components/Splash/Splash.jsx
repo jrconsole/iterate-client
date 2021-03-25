@@ -8,8 +8,10 @@ export const Splash = (props) => {
     return (
         <div className="splash">
             <header>
-                <h1>ITERATE</h1>
-                <h4 className='subtitle'>Lease your card. Stay ahead of the game.</h4>
+                <div class="heading">
+                    <h1>ITERATE</h1>
+                    <h4 className='subtitle'>Lease your card. Stay ahead of the game.</h4>
+                </div>
             </header>
             <main>
             <OfferList 
