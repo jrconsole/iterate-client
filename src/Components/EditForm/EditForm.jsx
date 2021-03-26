@@ -114,7 +114,7 @@ export const EditForm = (props) => {
 
     const renderNewSupplierFields = () => {
         return (
-            <>
+            <div>
                 <input 
                     type="text"
                     id="supplierNameAdd"
@@ -123,8 +123,8 @@ export const EditForm = (props) => {
                     value={supplierName}
                     onChange={(e) => setSupplierName(e.target.value)}
                     required />
-                <button type= "button" onClick={() => setNewSupplier(false)}>close</button>
-            </>
+                <button type= "button" onClick={() => setNewSupplier(false)}>Close</button>
+            </div>
         )
     }
 
@@ -135,25 +135,25 @@ export const EditForm = (props) => {
             return <p>Couldn't fetch suppliers!</p>
         }
         return (
-            <>
-                <select 
-                    name="suppliers" 
-                    id="suppliers" 
-                    defaultValue=''
-                    value={selectedSupplier}
-                    onChange={(e) => setSelectedSupplier(e.target.value)}
-                    required>
-                <option value='' disabled hidden>supplier</option>
-                    {allSuppliers.map(dbSupplier => {
-                        return (
-                            <option 
-                                value={dbSupplier.id}>
-                                    {dbSupplier.name}</option>
-                        )
-                    })}
-                </select>
-                <button type= "button" onClick={() => setNewSupplier(true)}>New Supplier</button>
-            </>
+                <div>
+                    <select 
+                        name="suppliers" 
+                        id="suppliers" 
+                        defaultValue=''
+                        value={selectedSupplier}
+                        onChange={(e) => setSelectedSupplier(e.target.value)}
+                        required>
+                    <option value='' disabled hidden>supplier</option>
+                        {allSuppliers.map(dbSupplier => {
+                            return (
+                                <option 
+                                    value={dbSupplier.id}>
+                                        {dbSupplier.name}</option>
+                            )
+                        })}
+                    </select>
+                    <button type= "button" onClick={() => setNewSupplier(true)}>New</button>
+                </div>
         )
     }
 
@@ -162,43 +162,55 @@ export const EditForm = (props) => {
             return <h1>thanks!</h1>
         } else {
             return (
-                <form onSubmit={submitForm} >
+                <form onSubmit={submitForm} className="editForm">
                     <h2>{newGPU ? `Add a GPU Listing` : `Edit ${props.gpu.name}`}</h2> 
                     
-                    <input 
-                        type="text"
-                        id="gpuNameEdit"
-                        name="gpuName"
-                        placeholder="GPU Name"
-                        value={gpuName}
-                        onChange={(e) => setGPUName(e.target.value)}
-                        required />
+                    <section className="main">
+                        <label htmlFor="gpuNameEdit">GPU Name</label>
+                        <input 
+                            type="text"
+                            id="gpuNameEdit"
+                            name="gpuName"
+                            placeholder="GPU Name"
+                            value={gpuName}
+                            onChange={(e) => setGPUName(e.target.value)}
+                            required />
 
-                    {newSupplier ? renderNewSupplierFields() : renderSelectSupplier()}
+                        <label htmlFor="suppliers" >Supplier</label>
+                        {newSupplier ? renderNewSupplierFields() : renderSelectSupplier()}
 
-                    <span>$</span>
-                    <input 
-                        type="number"
-                        id="gpuPriceDollarsEdit"
-                        name="gpuPriceDollars"
-                        placeholder="50"
-                        value={gpuPriceDollars}
-                        onChange={(e) => setGPUPriceDollars(e.target.value)}
-                        required />
-                    <span>.</span>
-                    <input 
-                        type="number"
-                        id="gpuPriceCentsEdit"
-                        name="gpuPriceCents"
-                        placeholder="00"
-                        value={gpuPriceCents}
-                        onChange={(e) => setGPUPriceCents(e.target.value)}/>
-                    <span> /mo</span>
+                        <label htmlFor="gpuPriceDollarsEdit">Price</label>
+                        <div className="price">
+                            <span>$</span>
+                            <input
+                                type="number"
+                                id="gpuPriceDollarsEdit"
+                                name="gpuPriceDollars"
+                                placeholder="50"
+                                value={gpuPriceDollars}
+                                onChange={(e) => setGPUPriceDollars(e.target.value)}
+                                required />
+                            <span>.</span>
+                            <input 
+                                type="number"
+                                id="gpuPriceCentsEdit"
+                                name="gpuPriceCents"
+                                placeholder="00"
+                                value={gpuPriceCents}
+                                onChange={(e) => setGPUPriceCents(e.target.value)}/>
+                            <span> /mo</span>
+                        </div>
+                        
+                        <label htmlFor="gpuImageUpload">Image</label>
+                        <div>
+                            <img className="imgPreview" src={previewURL} />
+                            <input id="gpuImageUpload" type="file" accept="image/*" onChange={handleImgChange} />
+                        </div>
+                    </section>
 
-                    <input type="file" accept="image/*" onChange={handleImgChange} />
-                    <img className="imgPreview" src={previewURL} />
-
-                    <SpecForm gpu={props.gpu} specs={specs} setSpecs={setSpecs} />
+                    <section>
+                        <SpecForm gpu={props.gpu} specs={specs} setSpecs={setSpecs} />
+                    </section>
 
                     <button className='primary' type='submit'>Submit</button>
                 </form>
@@ -207,10 +219,10 @@ export const EditForm = (props) => {
     }
 
     return (
-        <>
+        <div className="formContainer">
             <div className='formBack' onClick={props.closeForm}></div>
             {renderForm()}
             
-        </>
+        </div>
     );
 };

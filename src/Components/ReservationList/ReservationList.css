@@ -1,8 +1,11 @@
 .reservation.card {
+    width: 90%;
+    max-width: 750px;
     display: grid;
     grid-template-rows: 3fr 2fr;
-    grid-template-columns: 1fr;
+    grid-template-columns: 4fr 1fr;
     justify-items: center;
+    align-items: center;
 }
 
 .reservation .main {
@@ -14,7 +17,7 @@
 }
 
 .reservation .reservationInfo {
-    grid-area: 2 / 1 / span 1 / span 3;
+    grid-area: 2 / 1 / span 1 / span 2;
     text-align: center;
 }
 
@@ -33,4 +36,25 @@
 .reservation .buttons {
     grid-area: 1 / 2 / span 2 / span 1;
     align-self: center;
+}
+
+@media only screen and (max-width: 550px) {
+    .reservation.card {
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+
+    .reservation .reservationInfo {
+        grid-area: 3 / 1 / span 1 / span 1;
+    }
+
+    .reservation .buttons {
+        grid-area: 2 / 1 / span 1 / span 1;
+        display: flex;
+    }
+    
+    .reservation .main {
+        justify-items: center;
+        align-items: center;
+    }
 }
