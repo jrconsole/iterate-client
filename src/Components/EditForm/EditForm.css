@@ -4,4 +4,38 @@ select:invalid {
 
 .imgPreview {
     max-width: 300px;
+    display: block;
+}
+
+.editForm {
+    max-width: 600px;
+    max-height: 800px;
+    display: grid;
+    align-items: center;
+    grid-auto-rows: minmax(min-content, max-content);
+}
+
+.editForm section{
+    display: grid;
+    grid-auto-rows: minmax(min-content, max-content);
+    grid-column-gap: 10%;
+    grid-row-gap: 2%;
+    grid-template-columns: 1fr 2fr;
+}
+
+.editForm section.main{
+    width: 100%;
+    height: 700px;
+}
+
+.editForm label {
+    justify-self: end;
+}
+
+.editForm input {
+    max-width: 200px;
+}
+
+.editForm .price input {
+    max-width: 50px;
 }

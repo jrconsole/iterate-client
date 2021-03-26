@@ -76,19 +76,25 @@ export const ReservationList = (props) => {
             return (
                 <>
                     <h3>Active: {activeReservations.length}</h3>
-                    {!activeReservations.length ? 
-                        'No active reservations' : 
-                        activeReservations.map(reservation => renderReservation(reservation) )}
+                    <section>
+                        {!activeReservations.length ? 
+                            'No active reservations' : 
+                            activeReservations.map(reservation => renderReservation(reservation) )}
+                    </section>
 
                     <h3>Leased: {leasedReservations.length}</h3>
-                    {!leasedReservations.length ? 
-                        'No leased reservations' :
-                        leasedReservations.map(reservation => renderReservation(reservation) )}
+                    <section>
+                        {!leasedReservations.length ? 
+                            'No leased reservations' :
+                            leasedReservations.map(reservation => renderReservation(reservation) )}
+                    </section>
 
                     <h3>Removed: {removedReservations.length}</h3>
-                    {!removedReservations.length ? 
-                        'No removed reservations' :
-                        removedReservations.map(reservation => renderReservation(reservation) )}
+                    <section>
+                        {!removedReservations.length ? 
+                            'No removed reservations' :
+                            removedReservations.map(reservation => renderReservation(reservation) )}
+                    </section>
                 </>
             )
         } else {

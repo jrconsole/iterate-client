@@ -1,15 +1,23 @@
-.dashboard.container {
+.dashboard .selections {
     width: 100%;
     display: flex;
+    flex-flow: row wrap;
     justify-content: center;
     margin-top: 100px;
 }
 
 .dashboard.selection.preview {
     max-width: none;
+    min-width: 200px;
     margin: 20px;
     padding: 40px;
     width: 30%;
     height: 200px;
     background-color: darkorchid;
+}
+
+.dashboard section {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
