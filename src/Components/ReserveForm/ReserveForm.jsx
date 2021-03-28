@@ -111,7 +111,7 @@ export const ReserveForm = (props) => {
     }
 
     return (
-        <div className="formContainer">
+        <div className="formContainer resForm">
             {renderForm()}
             <div className='formBack' onClick={props.closeForm}></div>
         </div>
