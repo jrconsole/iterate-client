@@ -72,19 +72,21 @@ export const SpecForm = (props) => {
         return Object.keys(props.specs).map(category => {
             return (
                 <> 
-                    <hr />
-                    <button type= "button" onClick={() => deleteCategory(category)}>Delete Category</button>
-                    <label htmlFor={`${category}CatInput`}>Label</label>
-                    <input 
-                        type="text"
-                        id={`${category}CatInput`}
-                        name={`${category}CatInput`}
-                        placeholder={`Input Category Label`}
-                        value={category}
-                        onChange={(e) => setCatLabel(category, e.target.value, props.specs[category])}
-                        required />
+                    <div className="category">
+                        {/* <label htmlFor={`${category}CatInput`}>Label</label> */}
+                        <input 
+                            type="text"
+                            id={`${category}CatInput`}
+                            name={`${category}CatInput`}
+                            placeholder={`Input Category Label`}
+                            value={category}
+                            onChange={(e) => setCatLabel(category, e.target.value, props.specs[category])}
+                            required />
+                        <button type= "button" onClick={() => deleteCategory(category)}>Delete</button>
+                    </div>
                     {renderSpecs(category)}
-                    <button type= "button" onClick={() => addSpec(category)}>Add Spec</button>
+                    <button className="spec" type= "button" onClick={() => addSpec(category)}>+</button>
+                    <hr/>
                 </>
             )
         })       
@@ -93,8 +95,8 @@ export const SpecForm = (props) => {
     const renderSpecs = (category) => {
         return props.specs[category].map(spec => {
             return (
-                <>
-                    <label htmlFor={`${spec[0]}KeyInput`}>Label</label>
+                <div className="spec">
+                    {/* <label htmlFor={`${spec[0]}KeyInput`}>Label</label> */}
                     <input 
                         type="text"
                         id={`${spec[0]}KeyInput`}
@@ -104,7 +106,7 @@ export const SpecForm = (props) => {
                         onChange={(e) => setSpec(category, spec[0], e.target.value, spec[1], spec[1])}
                         required />
 
-                    <label htmlFor={`${spec[0]}ValueInput`}>Value</label>
+                    {/* <label htmlFor={`${spec[0]}ValueInput`}>Value</label> */}
                     <input 
                         type="text"
                         id={`${spec[0]}ValueInput`}
@@ -113,16 +115,18 @@ export const SpecForm = (props) => {
                         value={spec[1]}
                         onChange={(e) => setSpec(category, spec[0], spec[0], spec[1], e.target.value)}
                         required />
-                    <button type= "button" onClick={() => deleteSpec(category, spec)}>Delete Spec</button>
-                </>
+                    <button type= "button" onClick={() => deleteSpec(category, spec)}>Delete</button>
+                </div>
             )
         })
     }
 
     return (
         <>
-            <h3>Specifications</h3>
-            <button type= "button" onClick={addCategory}>Add Category</button>
+            <div className="header">
+                <h3>Specifications</h3>
+                <button className="texty" type= "button" onClick={addCategory}>New Category</button>
+            </div>
             {renderCategories()}
         </>
     );

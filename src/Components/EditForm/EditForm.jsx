@@ -208,11 +208,16 @@ export const EditForm = (props) => {
                         </div>
                     </section>
 
-                    <section>
+                    <hr/>
+
+                    <section className="specForm">
                         <SpecForm gpu={props.gpu} specs={specs} setSpecs={setSpecs} />
                     </section>
 
-                    <button className='primary' type='submit'>Submit</button>
+                    <div className="buttons">
+                        <button onClick={props.closeForm}>Cancel</button>
+                        <button className='primary' type='submit'>Submit</button>
+                    </div>
                 </form>
             )
         }
@@ -222,7 +227,6 @@ export const EditForm = (props) => {
         <div className="formContainer">
             <div className='formBack' onClick={props.closeForm}></div>
             {renderForm()}
-            
         </div>
     );
 };

@@ -3,7 +3,7 @@
     display: grid;
 }
 
-.resForm form .buttons {
+form .buttons {
     margin: 10px 0px;
     justify-self: center;
 }

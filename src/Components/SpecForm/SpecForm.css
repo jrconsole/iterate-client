@@ -1,0 +1,27 @@
+.specForm .header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.specForm h3, .specForm button {
+    display: inline;
+    margin: 10px;
+}
+
+.specForm .category {
+    margin: 10px 0;
+}
+
+.specForm .spec {
+    align-self: center;
+}
+
+.specForm hr {
+    width: 70%;
+}
+
+.specForm input {
+    max-width: 150px;
+}

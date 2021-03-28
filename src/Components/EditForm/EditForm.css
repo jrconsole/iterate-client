@@ -12,30 +12,40 @@ select:invalid {
     max-height: 800px;
     display: grid;
     align-items: center;
-    grid-auto-rows: minmax(min-content, max-content);
-}
-
-.editForm section{
-    display: grid;
-    grid-auto-rows: minmax(min-content, max-content);
-    grid-column-gap: 10%;
-    grid-row-gap: 2%;
-    grid-template-columns: 1fr 2fr;
+    grid-auto-rows: max-content;
 }
 
 .editForm section.main{
     width: 100%;
-    height: 700px;
+    display: grid;
+    grid-column-gap: 10%;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+}
+
+.editForm section.specForm{
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+}
+
+.editForm hr {
+    width: 100%;
 }
 
 .editForm label {
     justify-self: end;
 }
 
-.editForm input {
+.editForm input, select {
     max-width: 200px;
+    margin: 10px;
 }
 
 .editForm .price input {
     max-width: 50px;
+}
+
+.editForm button.primary {
+    align-self: center;
 }
