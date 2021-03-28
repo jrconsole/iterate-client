@@ -15,9 +15,3 @@
     height: 200px;
     background-color: darkorchid;
 }
-
-.dashboard section {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-}

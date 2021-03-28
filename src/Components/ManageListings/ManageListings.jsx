@@ -4,6 +4,7 @@ import { EditForm } from '../EditForm/EditForm';
 import { OfferCard } from '../OfferCard/OfferCard';
 import { useMutation } from '@apollo/client';
 import { deleteGPU } from '../../util/graphql';
+import './ManageListings.css';
 
 export const ManageListings = (props) => {
     const [ editFormActive, setEditFormActive ] = useState(false);
@@ -28,7 +29,7 @@ export const ManageListings = (props) => {
     const renderListings = () => {
         if(props.gpus.length) {
             return (
-                <>
+                <div className="listContainer">
                     {props.gpus.map(gpu => {
                         return (
                             <>
@@ -36,7 +37,7 @@ export const ManageListings = (props) => {
                             </>
                         )
                     })}
-                </>
+                </div>
             )
         } else {
             return 'Add a listing!'

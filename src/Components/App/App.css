@@ -11,6 +11,10 @@ button {
   max-width: 100px;
 }
 
+button.texty {
+  height: 50px;
+}
+
 button:hover, button.primary {
   background-color: darkorchid;
 }
@@ -25,6 +29,7 @@ button.disabled {
   padding: 15px;
   background-color: rgba(66, 65, 65, 0.938); /*card color*/
   border-radius: 10px;
+  max-width: 750px;
 }
 
 .formBack {
@@ -56,6 +61,10 @@ input, select {
   outline: none;
   padding: 10px;
   margin: 5px;
+}
+
+input {
+  height: 20px;
 }
 
 .radio {
@@ -104,6 +113,12 @@ option {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.listContainer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 
 
