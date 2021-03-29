@@ -10,8 +10,6 @@ form .buttons {
 
 .resForm .submitMessage {
     z-index: 2;
-    position: fixed;
-    top: 30%;
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
