@@ -19,8 +19,9 @@ select:invalid {
     width: 100%;
     display: grid;
     grid-column-gap: 10%;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 3fr;
     align-items: center;
+    text-align: center;
 }
 
 .editForm section.specForm{
@@ -48,4 +49,14 @@ select:invalid {
 
 .editForm button.primary {
     align-self: center;
+}
+
+@media only screen and (max-width: 550px) {
+    .imgPreview {
+        max-width: 200px;
+    }
+
+    .editForm section.main{
+        grid-column-gap: 5%;
+    }
 }

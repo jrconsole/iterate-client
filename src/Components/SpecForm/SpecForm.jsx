@@ -85,17 +85,18 @@ export const SpecForm = (props) => {
                         <button type= "button" onClick={() => deleteCategory(category)}>Delete</button>
                     </div>
                     {renderSpecs(category)}
-                    <button className="spec" type= "button" onClick={() => addSpec(category)}>+</button>
-                    <hr/>
+                    <button className="addSpec" type= "button" onClick={() => addSpec(category)}>+</button>
+                    {/* <hr/> */}
                 </>
             )
         })       
     }
 
     const renderSpecs = (category) => {
-        return props.specs[category].map(spec => {
+        return props.specs[category].map((spec, index) => {
+            const lastSpec = index === (props.specs[category].length -1) ? "last" : null;
             return (
-                <div className="spec">
+                <div className={`spec ${lastSpec}`}>
                     {/* <label htmlFor={`${spec[0]}KeyInput`}>Label</label> */}
                     <input 
                         type="text"
@@ -125,9 +126,9 @@ export const SpecForm = (props) => {
         <>
             <div className="header">
                 <h3>Specifications</h3>
-                <button className="texty" type= "button" onClick={addCategory}>New Category</button>
             </div>
             {renderCategories()}
+            <button className="texty" type= "button" onClick={addCategory}>New Category</button>
         </>
     );
 };
