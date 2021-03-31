@@ -11,112 +11,96 @@ export const SpecForm = (props) => {
     // const { loading, error, data } = useQuery(getSuppliers);
     // const [createSupplier, { error: supplierError }] = useMutation(addSupplier);
 
-    const setCatLabel = (oldCatLabel, newCatLabel, catSpecs) => {
-        const newSpecs = props.specs;
-        delete newSpecs[oldCatLabel];
+    const setCatLabel = (catIndex, newCatLabel) => {
+        const newSpecs = [...props.specs];
+        newSpecs[catIndex][0] = newCatLabel;
 
-        props.setSpecs({
-            ...newSpecs,
-            [newCatLabel]: catSpecs
-        })
+        props.setSpecs( newSpecs )
     } 
 
-    const setSpec = (category, oldSpecKey, newSpecKey, oldSpecValue, newSpecValue) => {
-        const newSpecs = props.specs;
-        newSpecs[category] = newSpecs[category].filter(spec => (spec[0] !== oldSpecKey || spec[1] !== oldSpecValue));
+    const setSpec = (catIndex, specIndex, newSpecKey, newSpecValue) => {
+        const newSpecs = [...props.specs];
+        newSpecs[catIndex][1][specIndex][0] = newSpecKey;
+        newSpecs[catIndex][1][specIndex][1] = newSpecValue;
 
-        props.setSpecs({
-            ...newSpecs, 
-            [category]: [
-                ...props.specs[category],
-                [newSpecKey, newSpecValue]
-            ] 
-        })
+        props.setSpecs( newSpecs )
     }
 
     const addCategory = () => {
-        props.setSpecs({
+        props.setSpecs([
             ...props.specs,
-            "New Category": []
-        })
+            ['', []]
+        ])
     }
 
-    const addSpec = (category) => {
-        props.setSpecs({
-            ...props.specs,
-            [category]: [
-                ...props.specs[category],
-                ["New Spec", '']
-            ]
-        })
+    const addSpec = (catIndex) => {
+        const newSpecs = [...props.specs];
+        newSpecs[catIndex][1].push(['', ''])
+
+        props.setSpecs( newSpecs )
     }
 
-    const deleteCategory = (category) => {
-        const newSpecs = props.specs;
-        delete newSpecs[category];
+    const deleteCategory = (catIndex) => {
+        const newSpecs = [...props.specs];
+        newSpecs.splice(catIndex, 1);
 
-        props.setSpecs({...newSpecs});
+        props.setSpecs( newSpecs );
     }
 
-    const deleteSpec = (category, spec) => {
-        const newSpecs = props.specs;
-        newSpecs[category] = newSpecs[category].filter(listSpec => (spec[0] !== listSpec[0] || spec[1] !== listSpec[1]))
+    const deleteSpec = (catIndex, specIndex) => {
+        const newSpecs = [...props.specs];
+        newSpecs[catIndex][1].splice(specIndex, 1);
 
-        props.setSpecs({
-            ...newSpecs,
-            [category]: [ ...newSpecs[category] ]
-        })
+        props.setSpecs( newSpecs )
     }
 
     const renderCategories = () => {
-        return Object.keys(props.specs).map(category => {
+        return props.specs.map((category, index) => {
             return (
                 <> 
                     <div className="category">
-                        {/* <label htmlFor={`${category}CatInput`}>Label</label> */}
                         <input 
                             type="text"
-                            id={`${category}CatInput`}
-                            name={`${category}CatInput`}
-                            placeholder={`Input Category Label`}
-                            value={category}
-                            onChange={(e) => setCatLabel(category, e.target.value, props.specs[category])}
+                            id={`CatInput${index}`}
+                            name={`Category Input - ${category}`}
+                            placeholder='Category Label'
+                            value={category[0]}
+                            onChange={(e) => setCatLabel(index, e.target.value)}
                             required />
-                        <button type= "button" onClick={() => deleteCategory(category)}>Delete</button>
+                        <button type= "button" onClick={() => deleteCategory(index)}>Delete</button>
                     </div>
-                    {renderSpecs(category)}
-                    <button className="addSpec" type= "button" onClick={() => addSpec(category)}>+</button>
-                    {/* <hr/> */}
+                    {renderSpecs(index)}
+                    <button className="addSpec" type= "button" onClick={() => addSpec(index)}>+</button>
                 </>
             )
         })       
     }
 
-    const renderSpecs = (category) => {
-        return props.specs[category].map((spec, index) => {
-            const lastSpec = index === (props.specs[category].length -1) ? "last" : null;
+    const renderSpecs = (catIndex) => {
+        return props.specs[catIndex][1].map((spec, index) => {
+            const lastSpec = index === (props.specs[catIndex][1].length -1) ? "last" : null;
             return (
                 <div className={`spec ${lastSpec}`}>
                     {/* <label htmlFor={`${spec[0]}KeyInput`}>Label</label> */}
                     <input 
                         type="text"
                         id={`${spec[0]}KeyInput`}
-                        name={`${spec[0]}KeyInput`}
-                        placeholder={`Input Spec Label`}
+                        name={`${spec[0]} Key Input`}
+                        placeholder='Spec Label'
                         value={spec[0]}
-                        onChange={(e) => setSpec(category, spec[0], e.target.value, spec[1], spec[1])}
+                        onChange={(e) => setSpec(catIndex, index, e.target.value, spec[1])}
                         required />
 
                     {/* <label htmlFor={`${spec[0]}ValueInput`}>Value</label> */}
                     <input 
                         type="text"
                         id={`${spec[0]}ValueInput`}
-                        name={`${spec[0]}ValueInput`}
-                        placeholder={`Input ${spec[0]} Value`}
+                        name={`${spec[0]} Value Input`}
+                        placeholder={`${spec[0]} Value`}
                         value={spec[1]}
-                        onChange={(e) => setSpec(category, spec[0], spec[0], spec[1], e.target.value)}
+                        onChange={(e) => setSpec(catIndex, index, spec[0], e.target.value)}
                         required />
-                    <button type= "button" onClick={() => deleteSpec(category, spec)}>Delete</button>
+                    <button type= "button" onClick={() => deleteSpec(catIndex, index)}>Delete</button>
                 </div>
             )
         })

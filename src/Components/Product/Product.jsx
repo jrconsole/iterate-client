@@ -12,8 +12,7 @@ export const Product = (props) => {
     if (error) { console.log(error) }
     const card = data ? data.gpu : null;
 
-    const renderSpecs = (allSpecs, category) => {
-        const specs = allSpecs[category];
+    const renderSpecs = (specs) => {
         return specs.map(spec => {
             return (
                 <div className='spec'>
@@ -26,12 +25,12 @@ export const Product = (props) => {
 
     const renderSpecCategories = () => {
         const specs = JSON.parse(card.specs);
-        return Object.keys(specs).map(category => {
+        return specs.map((category, index) => {
             return (
                 <>
-                    <h4>{category}</h4>
+                    <h4>{category[0]}</h4>
                     <div className='specs'>
-                        {renderSpecs(specs, category)}
+                        {renderSpecs(specs[index][1])}
                     </div>
                 </>
             )
@@ -56,7 +55,7 @@ export const Product = (props) => {
 
     return !card ? ("Sorry, we're having trouble finding that product.") : (
         <>
-        <Link to='/'><button className="nav">Home</button></Link>
+            <Link to='/'><button className="nav">Home</button></Link>
             <div className="product">
 
                 <h2>{card.supplier.name} {card.name}</h2>
