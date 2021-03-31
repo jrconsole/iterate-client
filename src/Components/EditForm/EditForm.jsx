@@ -17,7 +17,7 @@ export const EditForm = (props) => {
     const [allSuppliers, setAllSuppliers] = useState([]);
     const [previewURL, setPreviewURL] = useState(newGPU ? null : props.gpu.imgURL);
     const [imgFile, setImgFile] = useState(null);
-    const [specs, setSpecs] = useState(newGPU ? {} : JSON.parse(props.gpu.specs));
+    const [specs, setSpecs] = useState(newGPU ? [] : JSON.parse(props.gpu.specs));
 
     const [formSubmitted, setFormSubmitted] = useState(false);
 
