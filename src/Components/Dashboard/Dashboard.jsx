@@ -34,7 +34,7 @@ export const Dashboard = (props) => {
                         refresh={refreshReservations} 
                         updateStatus={changeResStatus}/>
         } else if (dataSelection === 'listings') {
-            return <ManageListings gpus={props.gpus} refresh={props.refresh} />
+            return <ManageListings gpus={props.gpus} refreshGPUs={props.refreshGPUs} />
         }
     }
 

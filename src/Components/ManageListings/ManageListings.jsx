@@ -19,7 +19,7 @@ export const ManageListings = (props) => {
 
     const onDelete = (id) => {
         dbDeleteGPU({variables: { id }});
-        props.refresh();
+        props.refreshGPUs();
     }
 
     const closeEditForm = () => {
@@ -48,7 +48,7 @@ export const ManageListings = (props) => {
         <>
             <button onClick={() => openForm({})}>Add Listing</button>
             {renderListings()}
-            {editFormActive ? <EditForm gpu={selectedGPU} closeForm={closeEditForm} /> : null}
+            {editFormActive ? <EditForm gpu={selectedGPU} closeForm={closeEditForm} refreshGPUs={props.refreshGPUs} /> : null}
         </>
     );
 };

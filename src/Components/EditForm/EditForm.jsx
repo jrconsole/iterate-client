@@ -110,6 +110,7 @@ export const EditForm = (props) => {
         if(addGPUError) { console.log(addGPUError) };
         if(updateGPUError) { console.log(updateGPUError) };
         setFormSubmitted(true);
+        props.refreshGPUs();
     }
 
     const renderNewSupplierFields = () => {
@@ -159,10 +160,17 @@ export const EditForm = (props) => {
 
     const renderForm = () => {
         if (formSubmitted) {
-            return <h1>thanks!</h1>
+            return (
+                <div className="submitMessage card">
+                    <h1>Sweet!</h1>
+                    <span>Your listing has been added.</span>
+                    
+                    <button onClick={props.closeForm} >Close</button>
+                </div>
+            )
         } else {
             return (
-                <form onSubmit={submitForm} className="editForm">
+                <form onSubmit={submitForm}>
                     <h2>{newGPU ? `Add a GPU Listing` : `Edit ${props.gpu.name}`}</h2> 
                     
                     <section className="main">
@@ -204,7 +212,7 @@ export const EditForm = (props) => {
                         <label htmlFor="gpuImageUpload">Image</label>
                         <div>
                             <img className="imgPreview" src={previewURL} />
-                            <input id="gpuImageUpload" type="file" accept="image/*" onChange={handleImgChange} />
+                            <input id="gpuImageUpload" type="file" accept="image/*" onChange={handleImgChange} required/>
                         </div>
                     </section>
 
@@ -224,9 +232,9 @@ export const EditForm = (props) => {
     }
 
     return (
-        <div className="formContainer">
-            <div className='formBack' onClick={props.closeForm}></div>
+        <div className="formContainer editForm">
             {renderForm()}
+            <div className='formBack' onClick={props.closeForm}></div>
         </div>
     );
 };

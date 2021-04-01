@@ -7,7 +7,7 @@ select:invalid {
     display: block;
 }
 
-.editForm {
+.editForm form {
     max-width: 600px;
     max-height: 800px;
     display: grid;
@@ -52,6 +52,18 @@ select:invalid {
     align-self: center;
 }
 
+.editForm .submitMessage {
+    z-index: 2;
+    top: 200px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+.editForm .submitMessage button {
+    margin-top: 20px;
+}
+
 @media only screen and (max-width: 550px) {
     .imgPreview {
         max-width: 200px;
@@ -61,7 +73,7 @@ select:invalid {
         grid-column-gap: 5%;
     }
 
-    .editForm {
+    .editForm form {
         max-height: 500px;
     }
 }
