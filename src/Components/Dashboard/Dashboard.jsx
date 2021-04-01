@@ -65,7 +65,7 @@ export const Dashboard = (props) => {
 
     return (
         <div className="dashboard">
-            <Link to='/'><button className="nav">Home</button></Link>
+            <Link to='/'><button className="nav">Live Page</button></Link>
             {renderSelectOptions()}
             {renderSelection()}
         </div>

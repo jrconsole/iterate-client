@@ -8,7 +8,6 @@ export const Splash = (props) => {
 
     return (
         <div className="splash">
-            <Link to='/manage'><button className="nav">Manage</button></Link>
             <header>
                 <div class="heading">
                     <h1>ITERATE</h1>

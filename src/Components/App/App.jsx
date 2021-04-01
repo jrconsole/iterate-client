@@ -128,7 +128,7 @@ function App() {
                 startRes={startReservation} 
                 renderReserveForm={renderReserveForm} />
             </Route>
-            <Route exact path="/manage">
+            <Route exact path="/dashboard">
               <Dashboard gpus={gpus} refreshGPUs={refreshGPUs}/>
             </Route>
             <Route path="/product/:id" >
