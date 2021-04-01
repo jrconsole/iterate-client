@@ -129,4 +129,8 @@ option {
   form {
     max-height: 500px;
   }
+
+  html {
+    zoom: 0.9;
+  }
 }
