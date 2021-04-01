@@ -40,6 +40,10 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.product .last {
+    border-bottom: none;
+}
+
 .product h4 {
     margin: 10px 0;
 }
