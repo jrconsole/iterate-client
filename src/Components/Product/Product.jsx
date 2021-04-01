@@ -13,9 +13,10 @@ export const Product = (props) => {
     const card = data ? data.gpu : null;
 
     const renderSpecs = (specs) => {
-        return specs.map(spec => {
+        return specs.map((spec, index) => {
+            const lastSpec = index === (specs.length -1) ? "last" : null;
             return (
-                <div className='spec'>
+                <div className={`spec ${lastSpec}`}>
                     <span>{spec[0]}</span>
                     <span>{spec[1]}</span>
                 </div>
