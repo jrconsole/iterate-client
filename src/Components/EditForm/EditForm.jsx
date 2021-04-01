@@ -163,7 +163,7 @@ export const EditForm = (props) => {
             return (
                 <div className="submitMessage card">
                     <h1>Sweet!</h1>
-                    <span>Your listing has been added.</span>
+                    <span>Your listings have been updated.</span>
                     
                     <button onClick={props.closeForm} >Close</button>
                 </div>
@@ -212,7 +212,7 @@ export const EditForm = (props) => {
                         <label htmlFor="gpuImageUpload">Image</label>
                         <div>
                             <img className="imgPreview" src={previewURL} />
-                            <input id="gpuImageUpload" type="file" accept="image/*" onChange={handleImgChange} required/>
+                            <input id="gpuImageUpload" type="file" accept="image/*" onChange={handleImgChange} required={previewURL ? false : true}/>
                         </div>
                     </section>
 
