@@ -18,6 +18,10 @@ export const Dashboard = (props) => {
         }
     }, [data])
 
+    useEffect(() => {
+        refreshReservations()
+    }, [])
+
     const renderSelection = () => {
         if (dataSelection === 'reservations') {
             if (loading) { return <p>loading reservations...</p> };
