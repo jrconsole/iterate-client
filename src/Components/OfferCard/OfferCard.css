@@ -60,9 +60,11 @@ div.offerCard {
 
     .offerCard .buttons {
         grid-area: 4 / 1 / span 1 / span 1;
-        width: 75%;
         display: flex;
         flex-flow: row;
-        /* justify-content: center; */
+    }
+
+    .offerCard a {
+        margin: 0 10px 0 5px;
     }
 }
