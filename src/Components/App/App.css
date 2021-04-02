@@ -18,10 +18,6 @@ button {
   font-size: large;
 }
 
-button.texty {
-  height: 50px;
-}
-
 button:hover, button.primary, button:active {
   background-color: darkorchid;
   font-weight: 700;
@@ -127,6 +123,14 @@ option {
 }
 
 .listContainer {
+  display: flex;
+  flex-flow: column;
+  /* align-items: center; */
+  max-width: 750px;
+  width: 100%;
+}
+
+.centeredArea {
   display: flex;
   flex-flow: column;
   align-items: center;

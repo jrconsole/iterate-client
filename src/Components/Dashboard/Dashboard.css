@@ -40,9 +40,3 @@
 .dashboard #selectListings.preview button {
     background-color: rgba(0, 0, 0, .4);
 }
-
-@media only screen and (max-width: 550px) {
-    .dashboard #selectListings.preview {
-        
-    }
-}
