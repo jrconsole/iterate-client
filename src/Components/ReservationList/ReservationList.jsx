@@ -12,7 +12,7 @@ export const ReservationList = (props) => {
         if(reservation.status === 'ACTIVE') {
             return (
                 <>
-                    <button className='primary' onClick={() => handleClick(reservation.id, 'LEASED')}>Leased</button>
+                    <button className='primary' onClick={() => handleClick(reservation.id, 'LEASED')}>Lease</button>
                     <button onClick={() => handleClick(reservation.id, 'REMOVED')}>Remove</button>
                 </>
             )
