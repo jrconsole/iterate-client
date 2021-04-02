@@ -14,7 +14,7 @@ export const Splash = (props) => {
                     <h4 className='subtitle'>Lease your card. Stay ahead of the game.</h4>
                 </div>
             </header>
-            <main>
+            <main className="centeredArea">
             <OfferList 
                 cards={props.cards} 
                 startRes={props.startRes} />
