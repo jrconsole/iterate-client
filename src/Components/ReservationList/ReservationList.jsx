@@ -74,7 +74,7 @@ export const ReservationList = (props) => {
                 }
             })
             return (
-                <div className="listContainer">
+                <div className="listContainer alignLeft">
                     <h3>Active: {activeReservations.length}</h3>
                     <section className="listContainer">
                         {!activeReservations.length ? 

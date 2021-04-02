@@ -19,8 +19,8 @@ export const OfferList = (props) => {
     }
 
     return (
-        <>
+        <div className="listContainer">
             {renderCards()}
-        </>
+        </div>
     );
 };

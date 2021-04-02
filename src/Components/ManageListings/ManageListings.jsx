@@ -47,7 +47,7 @@ export const ManageListings = (props) => {
     return (
         <>
             <div className="centeredArea">
-                <div className="listContainer">
+                <div className="listContainer alignLeft">
                     <div><button onClick={() => openForm({})}>Add +</button></div>
                     {renderListings()}
                 </div>

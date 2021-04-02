@@ -1,5 +1,4 @@
 .reservation.card {
-    /* width: 90%; */
     display: grid;
     grid-template-rows: 3fr 2fr;
     grid-template-columns: 4fr 1fr;
