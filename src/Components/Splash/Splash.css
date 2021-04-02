@@ -12,6 +12,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 300;
 }
 
 .splash .heading {
@@ -49,7 +50,6 @@ body {
 a {
     color: whitesmoke;
     text-decoration: none;
-    font-weight: bold;
 }
 
 @media only screen and (max-width: 550px) {

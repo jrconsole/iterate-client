@@ -46,7 +46,7 @@ export const ManageListings = (props) => {
 
     return (
         <>
-            <button onClick={() => openForm({})}>Add Listing</button>
+            <button onClick={() => openForm({})}>Add +</button>
             {renderListings()}
             {editFormActive ? <EditForm gpu={selectedGPU} closeForm={closeEditForm} refreshGPUs={props.refreshGPUs} /> : null}
         </>

@@ -45,24 +45,28 @@ export const Dashboard = (props) => {
     const renderSelectOptions = () => {
         return (
             <div className='selections'>
+                <div                        
+                    id='selectReservations' 
+                    className={` 
+                    selection 
+                    ${dataSelection ? null : 'preview'}`}>
                     <button 
-                        className={`
-                            dashboard 
-                            selection 
-                            ${dataSelection === 'reservations' ? 'primary' : null}
-                            ${dataSelection ? null : 'preview'}`}
+                        className={dataSelection === 'reservations' ? 'primary' : null}
                         onClick={() => setDataSelection('reservations')}>
                         Reservations
                     </button>
+                </div>
+                <div
+                    id='selectListings'
+                    className={`
+                        selection 
+                        ${dataSelection ? null : 'preview'}`}>
                     <button 
-                        className={`
-                            dashboard 
-                            selection 
-                            ${dataSelection === 'listings' ? 'primary' : null}
-                            ${dataSelection ? null : 'preview'}`}
+                        className={dataSelection === 'listings' ? 'primary' : null}
                         onClick={() => setDataSelection('listings')}>
                         Listings
                     </button>
+                </div>
             </div>
         )
     }

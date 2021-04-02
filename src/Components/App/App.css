@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;700&display=swap');
+
+* {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 400;
+}
+
 button {
   margin: 5px;
   border: none;
@@ -5,10 +12,10 @@ button {
   border-radius: 20px;
   cursor: pointer;
   color: whitesmoke;
-  padding: 10px 15px;
+  padding: 0px 15px;
   background-color: rgb(92, 92, 92); /*lighter than card*/
   height: 35px;
-  max-width: 100px;
+  font-size: large;
 }
 
 button.texty {
@@ -17,6 +24,7 @@ button.texty {
 
 button:hover, button.primary, button:active {
   background-color: darkorchid;
+  font-weight: 700;
 }
 
 button.disabled {

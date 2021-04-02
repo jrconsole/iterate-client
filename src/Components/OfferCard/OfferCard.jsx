@@ -18,9 +18,11 @@ export const OfferCard = (props) => {
         } else {
             return (
                 <>
-                    <Link to={`/product/${props.card.id}`}>
-                        <button>Info</button>
-                    </Link>
+                    <button>
+                        <Link to={`/product/${props.card.id}`}>
+                            Info
+                        </Link>
+                        </button>
                     {renderReserveButton()}
                 </>
             )
