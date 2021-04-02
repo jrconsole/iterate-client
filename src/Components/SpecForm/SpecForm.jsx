@@ -112,7 +112,7 @@ export const SpecForm = (props) => {
                 <h3>Specifications</h3>
             </div>
             {renderCategories()}
-            <button className="texty" type= "button" onClick={addCategory}>New Category</button>
+            <button className="texty" type= "button" onClick={addCategory}>Add Category +</button>
         </>
     );
 };

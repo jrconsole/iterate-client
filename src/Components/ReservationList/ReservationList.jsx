@@ -74,7 +74,7 @@ export const ReservationList = (props) => {
                 }
             })
             return (
-                <>
+                <div className="listContainer">
                     <h3>Active: {activeReservations.length}</h3>
                     <section className="listContainer">
                         {!activeReservations.length ? 
@@ -95,7 +95,7 @@ export const ReservationList = (props) => {
                             'No removed reservations' :
                             removedReservations.map(reservation => renderReservation(reservation) )}
                     </section>
-                </>
+                </div>
             )
         } else {
             return 'Go get some Reservations!'
@@ -103,8 +103,8 @@ export const ReservationList = (props) => {
     }
 
     return (
-        <>
+        <div className="centeredArea">
             {renderReservations()}
-        </>
+        </div>
     );
 };
