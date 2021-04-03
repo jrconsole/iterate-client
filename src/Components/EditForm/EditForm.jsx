@@ -124,7 +124,7 @@ export const EditForm = (props) => {
                     value={supplierName}
                     onChange={(e) => setSupplierName(e.target.value)}
                     required />
-                <button type= "button" onClick={() => setNewSupplier(false)}>Close</button>
+                <button type= "button" onClick={() => setNewSupplier(false)}>Cancel</button>
             </div>
         )
     }
