@@ -1,70 +1,22 @@
-# Getting Started with Create React App
+Welcome to Iterate! This is the premier app for leasing the industry's latest graphics cards.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To start the Iterate frontend on your local port 3000, clone this repo (iterate-client) and run the following command from the root directory:
 
-## Available Scripts
+`npm start`
 
-In the project directory, you can run:
+Alternatively, if you have Docker installed you can run a Dockerized frontend. Just clone this repo and run the following commands from the root directory:
 
-### `npm start`
+`docker build . -t iterate-client`
+`docker run -p 4000:4000 -d --name iterate-client iterate-client`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To start the Iterate server, navigate to the iterate-server repo and follow the instructions in the README.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The Iterate frontend uses React and Apollo to show you the graphics cards available for lease and allow you to reserve the card of your choice.
 
-### `npm test`
+There are 2 branches: master and portfolio. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The master branch is deployed (via Digital Ocean) and used for taking real-world reservations for graphics cards. Any code pushed or merged into the master branch will be automatically deployed and made visible to Iterate customers.
 
-### `npm run build`
+The portfolio branch is the primary development branch, also used as a staging environment. Any code pushed or merged to the portfolio branch will be automatically deployed (via Digital Ocean) and linked to on my personal portfolio website.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Any and all recommendations are appreciated! 
