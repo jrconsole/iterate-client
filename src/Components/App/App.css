@@ -105,8 +105,8 @@ option {
 
 .nav {
   position: fixed;
-  top: 0;
-  left: 10px;
+  top: 1.5rem;
+  right: 10px;
 }
 
 .formContainer {

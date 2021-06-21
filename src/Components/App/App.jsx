@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import * as _ from 'lodash';
 import './App.css';
+import { NavBar } from '../NavBar/NavBar';
 import { Splash } from '../Splash/Splash';
 import { Dashboard } from '../Dashboard/Dashboard';
 import { ManageListings } from '../ManageListings/ManageListings';
@@ -37,7 +38,7 @@ function App() {
   if (loading) return <p>loading ...</p>;
   if (error) {
       console.log(error);
-      return <p>nooo</p>;
+      return <p>Sorry, we're having trouble with our servers right now. Please check back soon.</p>;
   }
 
   const startReservation = (card) => {
@@ -119,7 +120,7 @@ function App() {
     <>
       <Router>
         <div>
-          {/*<NavBar />*/}
+          <NavBar />
 
           <Switch>
             <Route exact path="/">
