@@ -6,7 +6,7 @@ import './NavBar.css';
 export const NavBar = (props) => {
 
     return (
-        <div class="navbar">
+        <div className="navbar">
             <h1>ITERATE</h1>
         </div>
     );
