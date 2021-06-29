@@ -12,6 +12,10 @@ export const Product = (props) => {
     if (error) { console.log(error) }
     const card = data ? data.gpu : null;
 
+    const priceDollars = Math.floor(card.price/100);
+    let priceCents = card.price % 100;
+    priceCents = priceCents < 10 ? '0' + priceCents.toString() : priceCents;
+
     const renderSpecs = (specs) => {
         return specs.map((spec, index) => {
             const lastSpec = index === (specs.length -1) ? "last" : null;
@@ -61,6 +65,8 @@ export const Product = (props) => {
 
                 <h2>{card.supplier.name} {card.name}</h2>
                 <img src={card.imgURL} />
+                <p><span className="offerPrice">${priceDollars}</span>.{priceCents}/mo</p>
+                <span className="offerTerm">2yr term</span>
                 {renderReserveButton()}
 
                 <div className="card">
