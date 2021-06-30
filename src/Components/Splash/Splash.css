@@ -6,10 +6,10 @@ header {
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
     font-weight: 300;
-    z-index: -2;
 }
 
 .headerBack {
@@ -20,7 +20,10 @@ header {
     left: 0;
     background-color: black;
     opacity: 0.5;
-    z-index: -1;
+}
+
+.splash .nav {
+    z-index: 10;
 }
 
 .nav button {
@@ -30,6 +33,7 @@ header {
 
 .splash .heading {
     text-align: center;
+    z-index: 1;
 }
 
 header h4 {
