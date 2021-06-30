@@ -76,7 +76,6 @@ function App() {
           }
       })
       const newReservation = response.data.createReservation;
-      console.log(newReservation)
 
       if (personError || reservationError) {
           const error = personError ? personError : reservationError;

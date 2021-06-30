@@ -8,6 +8,7 @@ import './ManageListings.css';
 
 export const ManageListings = (props) => {
     const [ editFormActive, setEditFormActive ] = useState(false);
+    const [ deleteFormActive, setDeleteFormActive ] = useState(false);
     const [selectedGPU, setSelectedGPU] = useState({});
 
     const [dbDeleteGPU, { deleteError: error }] = useMutation(deleteGPU);
@@ -17,13 +18,23 @@ export const ManageListings = (props) => {
         setEditFormActive(true);
     }
 
+    const closeEditForm = () => {
+        setEditFormActive(false);
+    }
+
     const onDelete = (id) => {
         dbDeleteGPU({variables: { id }});
         props.refreshGPUs();
+        closeDeleteForm();
     }
 
-    const closeEditForm = () => {
-        setEditFormActive(false);
+    const openDeleteForm = (gpu) => {
+        setSelectedGPU(gpu);
+        setDeleteFormActive(true);
+    }
+
+    const closeDeleteForm = () => {
+        setDeleteFormActive(false);
     }
 
     const renderListings = () => {
@@ -33,7 +44,11 @@ export const ManageListings = (props) => {
                     {props.gpus.map(gpu => {
                         return (
                             <>
-                                <OfferCard view='manage' card={gpu} openForm={openForm} onDelete={onDelete} />
+                                <OfferCard 
+                                    view='manage'  
+                                    card={gpu} 
+                                    openForm={openForm} 
+                                    confirmDelete={openDeleteForm}/>
                             </>
                         )
                     })}
@@ -52,7 +67,24 @@ export const ManageListings = (props) => {
                     {renderListings()}
                 </div>
             </div>
-            {editFormActive ? <EditForm gpu={selectedGPU} closeForm={closeEditForm} refreshGPUs={props.refreshGPUs} /> : null}
+
+            {editFormActive ? 
+                <EditForm gpu={selectedGPU} closeForm={closeEditForm} refreshGPUs={props.refreshGPUs} /> 
+            : null}
+            
+            {deleteFormActive ?
+                <div className="formContainer deleteForm">
+                    <div className="submitMessage card">
+                        <h1>Woah!</h1>
+                        <span>Are you sure you want to DELETE this card permanently?</span>
+                        <p>{selectedGPU.supplier.name} - {selectedGPU.name}</p>
+                        
+                        <button onClick={closeDeleteForm} >Close</button>
+                        <button onClick={() => onDelete(selectedGPU.id)}>Delete</button>
+                    </div>
+                    <div className='formBack' onClick={closeDeleteForm}></div>
+                </div> 
+            : null}
         </>
     );
 };

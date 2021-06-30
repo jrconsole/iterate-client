@@ -12,7 +12,7 @@ export const OfferCard = (props) => {
             return (
                 <>
                     <button onClick={() => props.openForm(props.card)}>Edit</button>
-                    <button onClick={() => props.onDelete(props.card.id)}>Delete</button>
+                    <button onClick={() => props.confirmDelete(props.card)}>Delete</button>
                 </>
             )
         } else {
