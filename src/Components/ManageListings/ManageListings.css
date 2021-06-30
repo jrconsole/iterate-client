@@ -1,0 +1,11 @@
+.deleteForm .submitMessage {
+    z-index: 2;
+    top: 200px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+.deleteForm .submitMessage button {
+    margin-top: 20px;
+}
