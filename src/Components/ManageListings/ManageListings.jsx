@@ -80,7 +80,7 @@ export const ManageListings = (props) => {
                         <p>{selectedGPU.supplier.name} - {selectedGPU.name}</p>
                         
                         <button onClick={closeDeleteForm} >Close</button>
-                        <button onClick={() => onDelete(selectedGPU.id)}>Delete</button>
+                        <button className="warning" onClick={() => onDelete(selectedGPU.id)}>Delete</button>
                     </div>
                     <div className='formBack' onClick={closeDeleteForm}></div>
                 </div> 
