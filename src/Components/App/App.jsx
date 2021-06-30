@@ -45,13 +45,13 @@ function App() {
       setSelectedCard(card);
 
       if (Object.keys(user.info).length) {
-          submitReservation(user, card);
+          submitReservation(user, [card.id]);
       } else {
           setReserveFormActive(true);
       }
   }
 
-  const submitReservation = async (personInput, card) => {
+  const submitReservation = async (personInput, cardIds) => {
       let person;
       //---check if there is an existing user to avoid creating duplicate
       if (Object.keys(user.info).length) {
@@ -70,29 +70,27 @@ function App() {
 
       const response = await createReservation({
           variables: { 
-              gpuId: card.id, 
+              gpuIds: cardIds, 
               personId: person.id, 
               foundersOnly: personInput.foundersOnly
           }
       })
       const newReservation = response.data.createReservation;
+      console.log(newReservation)
 
       if (personError || reservationError) {
           const error = personError ? personError : reservationError;
           console.log(error);
       }
-      updateReservations(card);
-      console.log('reservation', newReservation);
+      updateReservations(cardIds);
       return newReservation;
   }
 
-  const updateReservations = (card) => {
+  const updateReservations = (cardIds) => {
     const currentGPUs = [...gpus];
-    currentGPUs.forEach(gpu => {
-      if(gpu.id === card.id) {
-        console.log(gpu);
-        gpu.reserved = true;
-      }
+    cardIds.forEach(cardId => {
+      const matchingGPU = currentGPUs.find(gpu => gpu.id === cardId)
+      matchingGPU.reserved = true;
     });
 
     setGPUs(currentGPUs);
@@ -108,6 +106,7 @@ function App() {
               <ReserveForm  
                   closeForm={closeForm} 
                   card={selectedCard} 
+                  cards={gpus}
                   submitRes={submitReservation} />
           )
       } else {

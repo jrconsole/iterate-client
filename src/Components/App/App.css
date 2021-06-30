@@ -70,33 +70,37 @@ input, select {
   margin: 5px;
 }
 
-.radio {
+.radio, .checkbox {
   display: grid;
   grid-template-columns: min-content auto;
   grid-gap: 0.5em;
   margin: 5px;
 }
 
-.radioInput {
+.radioInput, .checkboxInput {
   display: flex;
 }
 
-.radioInput input {
+.radioInput input, .checkbox input {
   width: 0;
   height: 0;
   opacity: 0;
 }
 
-.radioInput input:checked + .radioControl {
+.radioInput input:checked + .radioControl, .checkboxInput input:checked + .checkboxControl {
   background-color: darkorchid;
 }
 
-.radioControl {
+.radioControl, .checkboxControl {
   display: block;
   width: 1em;
   height: 1em;
   border-radius: 50%;
   border: 0.1em solid whitesmoke;
+}
+
+.checkboxControl {
+  border-radius: 0;
 }
 
 select:invalid {

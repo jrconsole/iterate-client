@@ -13,6 +13,9 @@ export const Splash = (props) => {
                 <div className="heading">
                     <h4>Get Ahead. Stay Ahead.</h4>
                     <h2 className='subtitle'>Lease Your Graphics Card</h2>
+                    <div className="buttons">
+                        <button onClick={() => props.startRes({})}>Reserve</button>
+                    </div>
                 </div>
                 <div className="headerBack"/>
             </header>

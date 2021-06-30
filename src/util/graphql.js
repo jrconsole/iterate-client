@@ -157,24 +157,34 @@ export const getReservations = gql`
 
 export const addReservation = gql`
     mutation addReservation (
-        $gpuId: String!,
+        $gpuIds: [String!]!,
         $personId: String!,
         $foundersOnly: Boolean!
     ) {
         createReservation(
-        reservation: { 
-        gpuId: $gpuId, 
-        personId: $personId,
-        foundersOnly: $foundersOnly 
-        }
+            reservation: { 
+                gpuIds: $gpuIds, 
+                personId: $personId,
+                foundersOnly: $foundersOnly 
+            }
     ) {
         id
-        gpu {
+        gpus {
             id
+            name
+            supplier {
+                name
+            }
         }
         person {
             id
+            firstName
+            lastName
+            email
+            phone
         }
+        foundersOnly
+        date
     }
 }
 `
