@@ -44,7 +44,7 @@ function App() {
   const startReservation = (card) => {
       setSelectedCard(card);
 
-      if (Object.keys(user.info).length) {
+      if (Object.keys(user.info).length && Object.keys(card).length) {
           submitReservation(user, [card.id]);
       } else {
           setReserveFormActive(true);
