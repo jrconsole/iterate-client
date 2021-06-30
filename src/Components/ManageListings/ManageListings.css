@@ -9,3 +9,7 @@
 .deleteForm .submitMessage button {
     margin-top: 20px;
 }
+
+.deleteForm .warning {
+    background-color: red;
+}

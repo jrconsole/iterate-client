@@ -10,11 +10,14 @@ export const Product = (props) => {
     let { id } = useParams();
     const { loading, error, data, refetch: refreshGPU } = useQuery(getGPU, { variables: { id }});
     if (error) { console.log(error) }
-    const card = data ? data.gpu : null;
 
-    const priceDollars = Math.floor(card.price/100);
-    let priceCents = card.price % 100;
-    priceCents = priceCents < 10 ? '0' + priceCents.toString() : priceCents;
+    let card, priceDollars, priceCents;
+    if (data) {
+        card = data.gpu;
+        priceDollars = Math.floor(card.price/100);
+        priceCents = card.price % 100;
+        priceCents = priceCents < 10 ? '0' + priceCents.toString() : priceCents;
+    }
 
     const renderSpecs = (specs) => {
         return specs.map((spec, index) => {
